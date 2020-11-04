@@ -20,6 +20,11 @@ public class CharacterMovementVelocity : MonoBehaviour
         this.velocityVector = velocityVector;
     }
 
+    public void MoveTowards(Vector3 target)
+    {
+        this.velocityVector = target;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
