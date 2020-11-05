@@ -8,7 +8,7 @@ public class BrokenShip : MonoBehaviour, ITaskObject
     private bool hasChangeFix = false;
 
     public float ShipFixPercentage { get => shipFixPercentage; set => shipFixPercentage = value; }
-    public bool HasChangeFix { get => hasChangeFix; set => hasChangeFix = value; }
+    public bool HasChangeFix { get => hasChangeFix;}
 
     // Start is called before the first frame update
     void Start()
@@ -29,13 +29,14 @@ public class BrokenShip : MonoBehaviour, ITaskObject
 
     public void DoTask(CharacterStats characterStats)
     {
-        HasChangeFix = true;
+        hasChangeFix = true;
         float fixEfficience = 1 + (characterStats.Intelligence / 10);
-        shipFixPercentage += 1 * fixEfficience;
+        GameResources.ChangeFixShipPercentage(fixEfficience);
+
         Debug.Log("Consertando Nave...");
         GetComponent<Timer>().AwaitForSeconds(2, () => {
             Debug.Log("Nave Reparada.");
-            HasChangeFix = false;
+            hasChangeFix = false;
         });
     }
 
