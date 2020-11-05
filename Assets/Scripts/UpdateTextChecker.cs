@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UpdateTextChecker : MonoBehaviour
 {
-    [SerializeField] Resources resouce;
+    [SerializeField] Resources resouce = Resources.Scrap;
     private enum Resources
     {
         Scrap,
@@ -14,17 +14,17 @@ public class UpdateTextChecker : MonoBehaviour
         ShipFixPercentage,
     }
 
-    event EventHandler eventAttribute;
+    //event EventHandler eventAttribute;
     // Start is called before the first frame update
     void Awake()
     {
+        //TODO: Melhorar isso
         switch (resouce)
         {
             case Resources.ShipFixPercentage:
                 GameResources.OnFixShipPercentageChanged += delegate (object sender, EventArgs e)
                 {
-                    //if(sender is string)
-                        UpdateText(sender.ToString() + "%");
+                    UpdateText(sender.ToString() + "%");
                 }; 
                 break;
         }

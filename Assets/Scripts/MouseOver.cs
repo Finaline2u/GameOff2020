@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MouseOver : MonoBehaviour
 {
-    [SerializeField] private Renderer renderer;
-    [SerializeField] private GameObject tooltip;
+    //[SerializeField] private Renderer renderer;
+    [SerializeField] private GameObject tooltip = default;
+
     // Start is called before the first frame update
 
     private void Start()
     {
-        renderer = GetComponent<Renderer>();
+        //renderer = GetComponent<Renderer>();
     }
 
     private void OnMouseEnter()

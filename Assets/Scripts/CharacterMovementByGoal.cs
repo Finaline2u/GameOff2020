@@ -12,7 +12,7 @@ public class CharacterMovementByGoal : MonoBehaviour, IUnit
         Animating,
     }
 
-    private State state;
+    private State state = State.Idle;
     public bool IsIdle()
     {
         return state == State.Idle;

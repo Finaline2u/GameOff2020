@@ -14,8 +14,8 @@ public class TaskSystem : MonoBehaviour
     private IUnit unit;
     private State state;
     private Transform resourceNodeTransform;
-    private int shipPercentage = 0;
-    [SerializeField] private GameObject brokenShipObj;
+    //private int shipPercentage = 0;
+    [SerializeField] private GameObject brokenShipObj = default;
     private BrokenShip brokenShip;
 
     // Start is called before the first frame update

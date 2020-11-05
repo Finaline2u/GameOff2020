@@ -6,8 +6,8 @@ public class GameHandler : MonoBehaviour
 {
     private static GameHandler instance;
 
-    [SerializeField] private Transform shipNodeTransform;
-    [SerializeField] private Transform scavengerNodeTransform;
+    [SerializeField] private Transform shipNodeTransform = default;
+    //[SerializeField] private Transform scavengerNodeTransform;
 
     private void Awake()
     {
