@@ -6,6 +6,8 @@ public class MouseOver : MonoBehaviour
 {
     //[SerializeField] private Renderer renderer;
     [SerializeField] private GameObject tooltip = default;
+    [SerializeField] private SpriteRenderer selector;
+    private bool isSelected = false;
 
     // Start is called before the first frame update
 
@@ -20,7 +22,13 @@ public class MouseOver : MonoBehaviour
         tooltip.transform.position = new Vector3(transform.position.x + 3.5f, transform.position.y, transform.position.z);
         var charStats = GetComponent<CharacterStats>();
         tooltip.GetComponent<Tooltip>().ShowCharacterStats(charStats.CharName, charStats.Life, charStats.Strenght);
-        // Fazer aqui a aparição do tooltip
+    }
+
+    private void OnMouseDown()
+    {
+        isSelected = !isSelected;
+        Debug.Log("Personagem clicado.");
+        selector.enabled = isSelected;
     }
 
     private void OnMouseExit()

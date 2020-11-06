@@ -21,7 +21,7 @@ public static class GameResources
     public static void ChangeFixShipPercentage(float upgradeNumber)
     {
         fixShipPercentage += 1 * upgradeNumber;
-        Debug.Log("[GameResources] fixShipPercentage = " + fixShipPercentage);
+        /*Debug.Log("[GameResources] fixShipPercentage = " + fixShipPercentage);*/
         OnFixShipPercentageChanged?.Invoke(fixShipPercentage, EventArgs.Empty);
     }
 }

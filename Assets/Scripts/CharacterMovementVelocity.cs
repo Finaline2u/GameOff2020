@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMovementVelocity : MonoBehaviour
 {
-    [SerializeField] private int moveSpeed = 5;
+    private int moveSpeed;
 
     private Vector3 velocityVector;
     private Rigidbody2D rb;
@@ -12,6 +12,7 @@ public class CharacterMovementVelocity : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        moveSpeed = GetComponent<CharacterStats>().MoveSpeed;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -23,6 +24,11 @@ public class CharacterMovementVelocity : MonoBehaviour
     public void MoveTowards(Vector3 target)
     {
         this.velocityVector = target;
+    }
+
+    public void Stop()
+    {
+        this.velocityVector = Vector3.zero;
     }
 
     // Update is called once per frame

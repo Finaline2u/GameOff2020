@@ -24,14 +24,14 @@ public class CharacterMovementByGoal : MonoBehaviour, IUnit
         Debug.Log("Movendo personagem para posição = " + position);
         if(Vector3.Distance(gameObject.transform.position, position) > stopDistance) {
             Vector3 moveDir = (position - transform.position).normalized;
-            Debug.Log("Distancia = " + Vector3.Distance(transform.position, position));
+            /*Debug.Log("Distancia = " + Vector3.Distance(transform.position, position));*/
             GetComponent<CharacterMovementVelocity>().MoveTowards(moveDir);
         }
             
         else {
             Debug.Log("Chegou");
             onArrivedAtPosition.Invoke();
-            GetComponent<CharacterMovementVelocity>().MoveTowards(Vector3.zero);
+            GetComponent<CharacterMovementVelocity>().Stop();
         }
             
         /*Vector3 distanceVector = transform.position - position;

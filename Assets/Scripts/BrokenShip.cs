@@ -33,9 +33,9 @@ public class BrokenShip : MonoBehaviour, ITaskObject
         float fixEfficience = 1 + (characterStats.Intelligence / 10);
         GameResources.ChangeFixShipPercentage(fixEfficience);
 
-        Debug.Log("Consertando Nave...");
+        /*Debug.Log("Consertando Nave...");*/
         GetComponent<Timer>().AwaitForSeconds(2, () => {
-            Debug.Log("Nave Reparada.");
+            /*Debug.Log("Nave Reparada.");*/
             hasChangeFix = false;
         });
     }
