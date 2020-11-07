@@ -31,7 +31,7 @@ public class CharacterMovementByGoal : MonoBehaviour, IUnit
         else {
             Debug.Log("Chegou");
             onArrivedAtPosition.Invoke();
-            GetComponent<CharacterMovementVelocity>().Stop();
+            state = State.Idle;
         }
             
         /*Vector3 distanceVector = transform.position - position;

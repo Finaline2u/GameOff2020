@@ -29,11 +29,15 @@ public class CharacterMovementVelocity : MonoBehaviour
     public void Stop()
     {
         this.velocityVector = Vector3.zero;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         rb.velocity = velocityVector * moveSpeed;
+        velocityVector = Vector3.zero;
     }
 }

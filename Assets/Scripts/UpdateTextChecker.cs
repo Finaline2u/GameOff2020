@@ -18,7 +18,6 @@ public class UpdateTextChecker : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //TODO: Melhorar isso
         switch (resouce)
         {
             case Resources.ShipFixPercentage:
@@ -27,12 +26,13 @@ public class UpdateTextChecker : MonoBehaviour
                     UpdateText(sender.ToString() + "%");
                 }; 
                 break;
-        }
+            case Resources.Food:
+                GameResources.OnFoodPercentageChanged += delegate (object sender, EventArgs e)
+                {
 
-        /*eventAttribute += delegate (object sender, EventArgs e)
-        {
-            UpdateText(sender as string);
-        };*/
+                };
+                break;
+        }
     }
 
     private void UpdateText(string text)

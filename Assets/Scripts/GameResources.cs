@@ -10,6 +10,7 @@ public static class GameResources
     private static float fixShipPercentage;
 
     public static event EventHandler OnFixShipPercentageChanged;
+    public static event EventHandler OnFoodPercentageChanged;
 
     public static int ScrapAmount { get => scrapAmount;}
 
@@ -18,9 +19,16 @@ public static class GameResources
         scrapAmount += amount;
     }
 
+    public static void AddFoodAmount(int upgradeNumber)
+    {
+        foodAmount += upgradeNumber;
+        /*Debug.Log("[GameResources] fixShipPercentage = " + fixShipPercentage);*/
+        OnFoodPercentageChanged?.Invoke(fixShipPercentage, EventArgs.Empty);
+    }
+
     public static void ChangeFixShipPercentage(float upgradeNumber)
     {
-        fixShipPercentage += 1 * upgradeNumber;
+        fixShipPercentage += upgradeNumber;
         /*Debug.Log("[GameResources] fixShipPercentage = " + fixShipPercentage);*/
         OnFixShipPercentageChanged?.Invoke(fixShipPercentage, EventArgs.Empty);
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Selector : MonoBehaviour
 {
-    [SerializeField] private GameObject selector;
+    [SerializeField] private GameObject selector = default;
     private bool isSelected = false;
     private void OnMouseDown()
     {
