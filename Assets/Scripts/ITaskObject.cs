@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public interface ITaskObject
 {
-    void DoTask(CharacterStats characterStats);
-    void OnTaskFinished();
+    void DoTask(CharacterStats characterStats, Action onTaskFinished);
 }

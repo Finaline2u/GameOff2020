@@ -1,16 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scavenge : Task, ITaskObject
+public class Scavenge : Task
 {
-    public void DoTask(CharacterStats characterStats)
+    public override void DoTask(CharacterStats characterStats, Action onTaskFinished)
     {
-
-    }
-
-    public void OnTaskFinished()
-    {
+        Debug.Log("Explorando.");
     }
 
     // Start is called before the first frame update

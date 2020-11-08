@@ -4,12 +4,9 @@ using UnityEngine;
 public abstract class Task: MonoBehaviour
 {
     public static event EventHandler OnTaskClicked;
+    protected bool isCooldown = false;
 
-    private Transform taskPosition;
-    /*public Task (Transform taskTransform)
-    {
-        taskPosition = taskTransform;
-    }*/
+    public bool IsCooldown { get => isCooldown; }
 
     private void OnMouseDown()
     {
@@ -20,4 +17,6 @@ public abstract class Task: MonoBehaviour
     {
         return transform.position;
     }
+
+    public abstract void DoTask(CharacterStats characterStats, Action onTaskFinished);
 }
