@@ -11,13 +11,15 @@ public class BrokenShip : Task
     public float ShipFixPercentage { get => shipFixPercentage; }
 
 
-    public override void DoTask(CharacterStats characterStats, Action onTaskFinished)
+    public override void DoTask(GameObject character, Action onTaskFinished)
     {
         if (shipFixPercentage >= 100)
         {
             onTaskFinished.Invoke();
             return;
         }
+
+        var characterStats = character.GetComponent<CharacterStats>();
 
         isCooldown = true;
         float fixEfficience = 1 + (characterStats.Intelligence / 10);

@@ -5,9 +5,18 @@ using UnityEngine;
 
 public class Scavenge : Task
 {
-    public override void DoTask(CharacterStats characterStats, Action onTaskFinished)
+    public override void DoTask(GameObject character, Action onTaskFinished)
     {
-        Debug.Log("Explorando.");
+        character.SetActive(false);
+        isCooldown = true;
+        Debug.Log("Exploração começou!");
+
+        GetComponent<Timer>().AwaitForSeconds(2, () => {
+            Debug.Log("Exploração terminada!");
+            isCooldown = false;
+            character.SetActive(true);
+            onTaskFinished.Invoke();
+        });
     }
 
     // Start is called before the first frame update

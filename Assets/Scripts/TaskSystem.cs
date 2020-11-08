@@ -50,7 +50,7 @@ public class TaskSystem : MonoBehaviour
                 {
                     if (!currentTask.IsCooldown)
                     {
-                        currentTask.DoTask(GetComponent<CharacterStats>(), () => {
+                        currentTask.DoTask(gameObject, () => {
                             state = State.Idle;
                         });
                     }

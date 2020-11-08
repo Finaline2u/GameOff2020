@@ -18,5 +18,5 @@ public abstract class Task: MonoBehaviour
         return transform.position;
     }
 
-    public abstract void DoTask(CharacterStats characterStats, Action onTaskFinished);
+    public abstract void DoTask(GameObject character, Action onTaskFinished);
 }
