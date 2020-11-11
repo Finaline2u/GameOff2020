@@ -8,11 +8,11 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] DialogueManager dialogueManager;
     [SerializeField] GameObject player = default;
     [SerializeField] GameObject inputTip = default;
+    [SerializeField] private bool resetConversation = false;
     //[SerializeField] string path = "";
     [SerializeField] List<string> pathList = new List<string>();
 
     private int currentPath = 0;
-    private bool resetConversation = false;
     private bool inTrigger = false;
     private bool dialogueLoaded = false;
 
@@ -44,7 +44,7 @@ public class DialogueTrigger : MonoBehaviour
         if (keyTrigger)
         {
             Debug.Log("Tecla pressionada.");
-            Debug.Log("path = " + pathList[0] + ", inTrigger = " + inTrigger + ", dialogueLoades = " + dialogueLoaded);
+            Debug.Log("path = " + pathList[0] + ", inTrigger = " + inTrigger + ", dialogueLoades = " + dialogueLoaded + ", currentPath = " + currentPath);
             inputTip.SetActive(false);
             if (inTrigger && !dialogueLoaded)
                 dialogueLoaded = dialogueManager.LoadDialogue(pathList[currentPath]);
@@ -52,14 +52,15 @@ public class DialogueTrigger : MonoBehaviour
             if (dialogueLoaded)
                 dialogueLoaded = dialogueManager.PrintLine();
 
-            if (!dialogueLoaded)
-            {
-                if (resetConversation)
-                    dialogueManager.ResetDialogue();
-                else
-                    currentPath = pathList.Count - 2;
-            }
+            if (!dialogueLoaded && resetConversation)
+                dialogueManager.ResetDialogue();
         }
+    }
+
+    public void ChangeConversation()
+    {
+        if(currentPath < pathList.Count)
+            currentPath++;
     }
 
     // Update is called once per frame

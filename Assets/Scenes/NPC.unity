@@ -2545,6 +2545,7 @@ MonoBehaviour:
   dialogueManager: {fileID: 1041923193}
   player: {fileID: 1057666291}
   inputTip: {fileID: 555394640}
+  resetConversation: 0
   pathList:
   - Conversation1
   - Conversation2
@@ -2676,15 +2677,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375142310}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8075943b3ba24b4d886e85e29c951f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 1041923193}
-  player: {fileID: 2003597593}
+  player: {fileID: 1057666291}
   inputTip: {fileID: 555394640}
-  pathList: []
+  resetConversation: 0
+  pathList:
+  - Conversation3
 --- !u!61 &1375142312
 BoxCollider2D:
   m_ObjectHideFlags: 0

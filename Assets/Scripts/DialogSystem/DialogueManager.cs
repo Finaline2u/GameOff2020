@@ -50,6 +50,7 @@ public class DialogueManager : MonoBehaviour
                 textDisplay.text = "";
                 charNameDisplay.text = "";
                 dialogueContainer.SetActive(false);
+                index = dialogue.Count - 2; //Return to last dialogue
                 /*OnDialogueFinished?.Invoke(this, )
                 Invoke();*/
                 return false;
@@ -70,6 +71,11 @@ public class DialogueManager : MonoBehaviour
     public void ResetDialogue()
     {
         index = 0;
+    }
+
+    public void ShowLastDialogue()
+    {
+        //index = dialogue.Count - 2;
     }
 
     // Start is called before the first frame update
