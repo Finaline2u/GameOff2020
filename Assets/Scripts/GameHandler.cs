@@ -9,8 +9,8 @@ public class GameHandler : MonoBehaviour
 
     /*[SerializeField] private Transform shipNodeTransform = default;
     [SerializeField] private Transform scavengeTransform = default;*/
-    [SerializeField] private TaskSystem[] workersAIList;
-    private TaskSystem selectedWorkerAI;
+    [SerializeField] private TaskSystemAI[] workersAIList;
+    private TaskSystemAI selectedWorkerAI;
 
     private List<Task> taskList;
 
@@ -20,7 +20,7 @@ public class GameHandler : MonoBehaviour
     {
         instance = this;
         Task.OnTaskClicked += OnTaskClicked;
-        TaskSystem.OnWorkerClicked += OnWorkerSelected;
+        TaskSystemAI.OnWorkerClicked += OnWorkerSelected;
         taskList = new List<Task>();
         //taskList.Add(new BrokenShip(shipNodeTransform));
         //taskList.Add(new Task(scavengeTransform));
@@ -28,7 +28,7 @@ public class GameHandler : MonoBehaviour
 
     private void OnWorkerSelected(object sender, EventArgs e)
     {
-        TaskSystem worker = sender as TaskSystem;
+        TaskSystemAI worker = sender as TaskSystemAI;
         selectedWorkerAI = worker;
         Debug.Log("Trabalhador selecionado.");
     }

@@ -36,7 +36,6 @@ public class CharacterMovementVelocity : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
         rb.velocity = velocityVector * moveSpeed;
         velocityVector = Vector3.zero;
     }

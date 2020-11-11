@@ -6,7 +6,6 @@ using UnityEngine;
 public class BrokenShip : Task
 {
     private float shipFixPercentage = 0;
-    private bool hasChangeFix = false;
 
     public float ShipFixPercentage { get => shipFixPercentage; }
 
@@ -17,17 +16,19 @@ public class BrokenShip : Task
         {
             onTaskFinished.Invoke();
             return;
+        } 
+        else
+        {
+            var characterStats = character.GetComponent<CharacterStats>();
+
+            isCooldown = true;
+            float fixEfficience = 1 + (characterStats.Intelligence / 10);
+            shipFixPercentage += 1 * fixEfficience;
+            GameResources.ChangeFixShipPercentage(shipFixPercentage);
+
+            GetComponent<Timer>().AwaitForSeconds(2, () => {
+                isCooldown = false;
+            });
         }
-
-        var characterStats = character.GetComponent<CharacterStats>();
-
-        isCooldown = true;
-        float fixEfficience = 1 + (characterStats.Intelligence / 10);
-        shipFixPercentage += 1 * fixEfficience;
-        GameResources.ChangeFixShipPercentage(shipFixPercentage);
-
-        GetComponent<Timer>().AwaitForSeconds(2, () => {
-            isCooldown = false;
-        });
     }
 }

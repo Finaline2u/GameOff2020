@@ -1,4 +1,5 @@
 ﻿using LitJson;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,41 +8,80 @@ public class DialogueManager : MonoBehaviour
 {
     private const string DIALOGUE_FOLDER = "Dialogues/";
 
+    private event EventHandler OnDialogueFinished;
+
     [SerializeField] private TextMeshProUGUI textDisplay = default;
     [SerializeField] private TextMeshProUGUI charNameDisplay = default; 
+    [SerializeField] private GameObject dialogueContainer = default;
     private JsonData dialogue;
     private int index;
 
-    private void LoadDialogue(string path)
+    private bool inDialogue = false;
+
+    public bool LoadDialogue(string path)
     {
-        index = 0;
-        var jsonTextFile = Resources.Load<TextAsset>(DIALOGUE_FOLDER + path);
-        dialogue = JsonMapper.ToObject(jsonTextFile.text);
+        Debug.Log("LoadDialogue()");
+        if (!inDialogue)
+        {
+            Debug.Log("Diálogo ativo.");
+            index = 0;
+            var jsonTextFile = Resources.Load<TextAsset>(DIALOGUE_FOLDER + path);
+            dialogue = JsonMapper.ToObject(jsonTextFile.text);
+            inDialogue = true;
+            dialogueContainer.SetActive(true);
+            
+            return true;
+        }
+        return false;
     }
 
-    private void printLine()
+    public bool PrintLine()
     {
-        string speaker = "";
-        JsonData line = dialogue[index];
-        foreach(JsonData key in line.Keys)
+        if (inDialogue)
         {
-            speaker = key.ToString();
+            string speaker = "";
+            JsonData line = dialogue[index];
+            string dialogueText = line[0].ToString();
+            Debug.Log("dialogueText = " + dialogueText);
+
+            if (dialogueText == "EOD")
+            {
+                inDialogue = false;
+                textDisplay.text = "";
+                charNameDisplay.text = "";
+                dialogueContainer.SetActive(false);
+                /*OnDialogueFinished?.Invoke(this, )
+                Invoke();*/
+                return false;
+            }
+
+            foreach(JsonData key in line.Keys)
+            {
+                speaker = key.ToString();
+            }
+            charNameDisplay.text = speaker;
+            textDisplay.text = dialogueText;
+            index++;
         }
-        charNameDisplay.text = speaker;
-        textDisplay.text = line[0].ToString();
-        index++;
+
+        return true;
+    }
+
+    public void ResetDialogue()
+    {
+        index = 0;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        LoadDialogue("Conversation1");
+        //LoadDialogue("Conversation1");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-            printLine();
+        /*if (Input.GetKeyDown(KeyCode.C))
+            PrintLine();*/
     }
 }

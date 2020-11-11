@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskSystem : MonoBehaviour
+public class TaskSystemAI : MonoBehaviour
 {
     public static event EventHandler OnWorkerClicked;
 
