@@ -1,5 +1,6 @@
 ﻿using LitJson;
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,14 +14,18 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textDisplay = default;
     [SerializeField] private TextMeshProUGUI charNameDisplay = default; 
     [SerializeField] private GameObject dialogueContainer = default;
+    [Range(0f, .2f)] [SerializeField] private float textDelay = .1f;
     private JsonData dialogue;
     private int index;
 
     private bool inDialogue = false;
+    private bool sentenceFinished = true;
+
+    public bool SentenceFinished { get => sentenceFinished; }
 
     public bool LoadDialogue(string path)
     {
-        Debug.Log("LoadDialogue()");
+        Debug.Log("LoadDialogue():\ninDialogue = " + inDialogue);
         if (!inDialogue)
         {
             Debug.Log("Diálogo ativo.");
@@ -50,9 +55,8 @@ public class DialogueManager : MonoBehaviour
                 textDisplay.text = "";
                 charNameDisplay.text = "";
                 dialogueContainer.SetActive(false);
-                index = dialogue.Count - 2; //Return to last dialogue
-                /*OnDialogueFinished?.Invoke(this, )
-                Invoke();*/
+                //sentenceFinished = true;
+                //index = dialogue.Count - 2; //Return to last dialogue
                 return false;
             }
 
@@ -60,12 +64,39 @@ public class DialogueManager : MonoBehaviour
             {
                 speaker = key.ToString();
             }
+            /*if(!dialogueContainer.activeSelf)
+                dialogueContainer.SetActive(true);*/
             charNameDisplay.text = speaker;
-            textDisplay.text = dialogueText;
-            index++;
+            textDisplay.text = "";
+            sentenceFinished = false;
+            StartCoroutine(PrintLine(dialogueText));
         }
 
         return true;
+    }
+
+    public void FastPrintLine()
+    {
+        if (!SentenceFinished) {
+            JsonData line = dialogue[index];
+            string dialogueText = line[0].ToString();
+            textDisplay.text = dialogueText;
+            index++;
+            sentenceFinished = true;
+            StopAllCoroutines();
+        }
+        
+    }
+
+    private IEnumerator PrintLine(string text)
+    {
+        for(int i = 0; i < text.Length; i++)
+        {
+            textDisplay.text += text[i];
+            yield return new WaitForSeconds(textDelay);
+        }
+        sentenceFinished = true;
+        index++;
     }
 
     public void ResetDialogue()
@@ -75,7 +106,8 @@ public class DialogueManager : MonoBehaviour
 
     public void ShowLastDialogue()
     {
-        //index = dialogue.Count - 2;
+        index = dialogue.Count - 2;
+        //inDialogue = true;
     }
 
     // Start is called before the first frame update

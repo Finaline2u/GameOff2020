@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class DialogueTrigger : MonoBehaviour
     private int currentPath = 0;
     private bool inTrigger = false;
     private bool dialogueLoaded = false;
+    private bool inDialogue = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,31 +31,46 @@ public class DialogueTrigger : MonoBehaviour
         inputTip.SetActive(true);
         inputTip.GetComponent<InputTip>().inputText.text = "C";
         if (collision.gameObject == player)
-            inTrigger = true;
+            gameObject.GetComponent<DialogueTrigger>().inTrigger = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         inputTip.SetActive(false);
         if (collision.gameObject == player)
-            inTrigger = false;
+            gameObject.GetComponent<DialogueTrigger>().inTrigger = false;
     }
 
     private void RunDialogue(bool keyTrigger)
     {
-        if (keyTrigger)
+        if (keyTrigger && inTrigger)
         {
             Debug.Log("Tecla pressionada.");
-            Debug.Log("path = " + pathList[0] + ", inTrigger = " + inTrigger + ", dialogueLoades = " + dialogueLoaded + ", currentPath = " + currentPath);
+            Debug.Log("path = " + pathList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + ",\ncurrentPath = " + currentPath + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);
+            
             inputTip.SetActive(false);
-            if (inTrigger && !dialogueLoaded)
-                dialogueLoaded = dialogueManager.LoadDialogue(pathList[currentPath]);
 
-            if (dialogueLoaded)
-                dialogueLoaded = dialogueManager.PrintLine();
+            if (!dialogueManager.SentenceFinished)
+                dialogueManager.FastPrintLine();
+            else
+            {
+                if (!dialogueLoaded)
+                    dialogueLoaded = dialogueManager.LoadDialogue(pathList[currentPath]);
 
-            if (!dialogueLoaded && resetConversation)
-                dialogueManager.ResetDialogue();
+                if (dialogueLoaded)
+                    dialogueLoaded = dialogueManager.PrintLine();
+
+                /*Debug.Log("inDialogue = " + inDialogue);
+
+                if (!inDialogue)
+                {
+                    if (resetConversation)
+                        dialogueManager.ResetDialogue();
+                    else
+                        dialogueManager.ShowLastDialogue();
+                    inDialogue = dialogueManager.PrintLine();
+                }*/
+            }
         }
     }
 
