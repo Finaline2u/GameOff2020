@@ -15,6 +15,7 @@ public class BrokenBity : Task
         if (foundParts == bodyParts.Count)
         {
             Debug.Log("Todas as partes coletadas!");
+            GetComponent<DialogueTrigger>().ChangeConversation();
             onTaskFinished.Invoke();
         }
     }

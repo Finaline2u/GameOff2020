@@ -992,6 +992,8 @@ GameObject:
   - component: {fileID: 645683504}
   - component: {fileID: 645683503}
   - component: {fileID: 645683502}
+  - component: {fileID: 645683507}
+  - component: {fileID: 645683506}
   m_Layer: 0
   m_Name: BityQuebrado
   m_TagString: Untagged
@@ -1100,11 +1102,59 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.82, y: -0.1, z: 1.5118858}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1308740765}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &645683506
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645683501}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.09375, y: 0.09375, z: 0.09375, w: 0.09375}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2512853, y: 2.3037717}
+  m_EdgeRadius: 0
+--- !u!114 &645683507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645683501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8075943b3ba24b4d886e85e29c951f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1041923193}
+  player: {fileID: 1057666291}
+  inputTip: {fileID: 555394640}
+  resetConversation: 0
+  conversationList:
+  - leftCharacter: {fileID: 21300000, guid: 867ddbae5d6bcc54b8373b37353b96b3, type: 3}
+    rightCharacter: {fileID: 21300000, guid: 4890c1f637ab24e48901a441777c8564, type: 3}
+    conversationPath: Conversation1
+  - leftCharacter: {fileID: 21300000, guid: 4890c1f637ab24e48901a441777c8564, type: 3}
+    rightCharacter: {fileID: 21300000, guid: 49fbc4958f40f164cb7e33bfd137a977, type: 3}
+    conversationPath: Conversation2
 --- !u!1 &711396806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,87 +2688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661c93df06ea8f64bb2b98e8f024c340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1308740764
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1308740765}
-  - component: {fileID: 1308740767}
-  - component: {fileID: 1308740766}
-  m_Layer: 0
-  m_Name: DialogueTrigger (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1308740765
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308740764}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 645683505}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1308740766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308740764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8075943b3ba24b4d886e85e29c951f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 1041923193}
-  player: {fileID: 1057666291}
-  inputTip: {fileID: 555394640}
-  resetConversation: 0
-  conversationList:
-  - leftCharacter: {fileID: 21300000, guid: 867ddbae5d6bcc54b8373b37353b96b3, type: 3}
-    rightCharacter: {fileID: 21300000, guid: 4890c1f637ab24e48901a441777c8564, type: 3}
-    conversationPath: Conversation1
-  - leftCharacter: {fileID: 21300000, guid: 4890c1f637ab24e48901a441777c8564, type: 3}
-    rightCharacter: {fileID: 21300000, guid: 49fbc4958f40f164cb7e33bfd137a977, type: 3}
-    conversationPath: Conversation2
---- !u!61 &1308740767
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308740764}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.089344, y: 2.1452084}
-  m_EdgeRadius: 0
 --- !u!1 &1325339909
 GameObject:
   m_ObjectHideFlags: 0
