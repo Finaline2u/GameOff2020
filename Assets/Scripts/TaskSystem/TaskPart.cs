@@ -5,11 +5,11 @@ using UnityEngine;
 public class TaskPart : MonoBehaviour
 {
     [SerializeField] GameObject player = default;
-    [SerializeField] Task mainTask;
+    [SerializeField] Task mainTask = default;
     // Start is called before the first frame update
     void Start()
     {
-        
+         
     }
 
     // Update is called once per frame
@@ -20,9 +20,11 @@ public class TaskPart : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject == player)
+        Debug.Log("TaskPart");
+        if (collision.gameObject == player)
         {
             player.GetComponent<TaskSystemPlayer>().MakeTask(mainTask);
+            Destroy(gameObject);
         }
     }
 }

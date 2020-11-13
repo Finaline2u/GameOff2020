@@ -11,9 +11,9 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] GameObject inputTip = default;
     [SerializeField] private bool resetConversation = false;
     //[SerializeField] string path = "";
-    [SerializeField] List<string> pathList = new List<string>();
+    [SerializeField] List<Conversation> conversationList = new List<Conversation>();
 
-    private int currentPath = 0;
+    private int currentConvesation = 0;
     private bool inTrigger = false;
     private bool dialogueLoaded = false;
     private bool inDialogue = false;
@@ -46,7 +46,7 @@ public class DialogueTrigger : MonoBehaviour
         if (keyTrigger && inTrigger)
         {
             Debug.Log("Tecla pressionada.");
-            Debug.Log("path = " + pathList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + ",\ncurrentPath = " + currentPath + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);
+            Debug.Log("path = " + conversationList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + ",\ncurrentPath = " + currentConvesation + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);
             
             inputTip.SetActive(false);
 
@@ -55,7 +55,7 @@ public class DialogueTrigger : MonoBehaviour
             else
             {
                 if (!dialogueLoaded)
-                    dialogueLoaded = dialogueManager.LoadDialogue(pathList[currentPath]);
+                    dialogueLoaded = dialogueManager.LoadDialogue(conversationList[currentConvesation]) ;
 
                 if (dialogueLoaded)
                     dialogueLoaded = dialogueManager.PrintLine();
@@ -76,8 +76,8 @@ public class DialogueTrigger : MonoBehaviour
 
     public void ChangeConversation()
     {
-        if(currentPath < pathList.Count)
-            currentPath++;
+        if(currentConvesation < conversationList.Count)
+            currentConvesation++;
     }
 
     // Update is called once per frame

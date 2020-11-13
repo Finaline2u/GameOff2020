@@ -10,12 +10,12 @@ public class BrokenBity : Task
     
     public override void DoTask(GameObject character, Action onTaskFinished)
     {
-        if(foundParts == bodyParts.Count)
+        foundParts++;
+        Debug.Log("Partes coletadas: " + foundParts);
+        if (foundParts == bodyParts.Count)
         {
+            Debug.Log("Todas as partes coletadas!");
             onTaskFinished.Invoke();
-        } else
-        {
-            foundParts++;
         }
     }
 

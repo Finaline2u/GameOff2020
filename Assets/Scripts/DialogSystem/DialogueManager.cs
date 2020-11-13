@@ -1,9 +1,11 @@
 ﻿using LitJson;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static DialogueTrigger;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class DialogueManager : MonoBehaviour
 
     private event EventHandler OnDialogueFinished;
 
+    [SerializeField] private List<DialogueTrigger> dialogueTriggerList = new List<DialogueTrigger>();
     [SerializeField] private TextMeshProUGUI textDisplay = default;
     [SerializeField] private TextMeshProUGUI charNameDisplay = default; 
     [SerializeField] private GameObject dialogueContainer = default;
@@ -23,14 +26,14 @@ public class DialogueManager : MonoBehaviour
 
     public bool SentenceFinished { get => sentenceFinished; }
 
-    public bool LoadDialogue(string path)
+    public bool LoadDialogue(Conversation conversation)
     {
         Debug.Log("LoadDialogue():\ninDialogue = " + inDialogue);
         if (!inDialogue)
         {
             Debug.Log("Diálogo ativo.");
             index = 0;
-            var jsonTextFile = Resources.Load<TextAsset>(DIALOGUE_FOLDER + path);
+            var jsonTextFile = Resources.Load<TextAsset>(DIALOGUE_FOLDER + conversation.conversationPath);
             dialogue = JsonMapper.ToObject(jsonTextFile.text);
             inDialogue = true;
             dialogueContainer.SetActive(true);
@@ -55,6 +58,7 @@ public class DialogueManager : MonoBehaviour
                 textDisplay.text = "";
                 charNameDisplay.text = "";
                 dialogueContainer.SetActive(false);
+                
                 //sentenceFinished = true;
                 //index = dialogue.Count - 2; //Return to last dialogue
                 return false;
@@ -108,6 +112,11 @@ public class DialogueManager : MonoBehaviour
     {
         index = dialogue.Count - 2;
         //inDialogue = true;
+    }
+
+    public void ChangeToNextConversation(DialogueTrigger currentTrigger)
+    {
+        currentTrigger.ChangeConversation();
     }
 
     // Start is called before the first frame update

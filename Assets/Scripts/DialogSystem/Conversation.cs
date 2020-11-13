@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using LitJson;
-using UnityEngine;
+﻿using UnityEngine;
 
-[Serializable]
-public class Conversation
+[System.Serializable]
+public struct Conversation
 {
-
-    Queue<Dialog> dialogs;
-
-    public void ReadJson()
-    {
-
-    }
-
-    //public void ShowDialog()
+    public Sprite leftCharacter;
+    public Sprite rightCharacter;
+    public string conversationPath;
 }
