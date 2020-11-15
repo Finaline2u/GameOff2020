@@ -8,7 +8,7 @@ public class ItemRandomSpawner : MonoBehaviour
     private List<Transform> spawnPoints = new List<Transform>();
     [HideInInspector] public List<Transform> nonSpawnedPoints = new List<Transform>();
 
-    [SerializeField] GameObject[] itemsPrefab;
+    [SerializeField] GameObject[] itemsPrefab = null;
     [HideInInspector] public List<GameObject> nonSpawnedItems = new List<GameObject>();
 
     public float spawnDelay = 2f;

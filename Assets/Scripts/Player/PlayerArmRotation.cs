@@ -6,7 +6,7 @@ public class PlayerArmRotation : MonoBehaviour
 {
 
     // Arms object should be inside the player, and the two arms (if have two) inside this object
-    [SerializeField] private Transform pivoArms;
+    [SerializeField] private Transform pivoArms = null;
 
     void FixedUpdate() {
         HandleArmRotation();

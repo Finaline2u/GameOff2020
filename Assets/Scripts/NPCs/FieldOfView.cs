@@ -4,49 +4,144 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour {
 
-    public float viewDistance;
-    public float viewAngle = 80;
-    public float rotationZ;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private GameObject guardObject;
+    [SerializeField] private Material redMaterial;
 
-    private Transform player;
+    private Animator guardAnim;
+    private Rigidbody2D guardRig;
+
+    private Mesh mesh;
+    private float fov;
+    private Vector3 origin;
+
+    private const string 
+    WALKING_UP = "WalkingUP", 
+    WALKING_DOWN = "WalkingDOWN", 
+    WALKING_LR = "WalkingLR";
+    
+    private const float 
+    fovUp = 134f, fovDown = -44f, 
+    fovRight = 50f, fovLeft = -130f;
+
+    private float startingAngle = 50f;
 
     void Start() {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = mesh;
+        fov = 90f;
+        origin = Vector3.zero;
+
+        guardAnim = guardObject.GetComponent<Animator>();
+        guardRig = guardObject.GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
-        if (CanSeePlayer()) {
-            //Debug.Log("Can see");
+    void LateUpdate() {
+        // To not disappear when crossing the camera bounds
+        mesh.RecalculateBounds();
+
+        int rayCount = 50;
+        float angle = startingAngle;
+        float angleIncrease = fov / rayCount;
+        float viewDistance = 6f;
+
+        #region Fov direction (up, down, left, right)
+        if (guardAnim.GetBool(WALKING_LR)) {
+            if (guardObject.transform.eulerAngles.y == 0)
+                startingAngle = fovRight;
+            else
+                startingAngle = fovLeft;
         }
-    }
 
-    bool CanSeePlayer() {
-        //Debug.Log(Vector3.Angle(transform.right, (player.position - transform.position).normalized));
-        if (Vector3.Distance(transform.position, player.position) < viewDistance) {
-            Vector3 dirToPlayer = (player.position - transform.position).normalized;
-            float angleBeetweenGuardAndPlayer = Vector3.Angle(transform.up, dirToPlayer);
+        if (guardAnim.GetBool(WALKING_UP))
+            startingAngle = fovUp;
+ 
+        else if (guardAnim.GetBool(WALKING_DOWN))
+            startingAngle = fovDown;
+        #endregion
 
-            if (angleBeetweenGuardAndPlayer < viewAngle) {
-                Debug.Log("Can see");
-                // if (!Physics2D.Linecast(transform.position, player.position, layerMask)) {
-                //     return true;
-                // }
+        Vector3[] vertices = new Vector3[rayCount + 1 + 1];
+        Vector2[] uv = new Vector2[vertices.Length];
+        int[] triangles = new int[rayCount * 3];
+
+        vertices[0] = origin;
+
+        int vertexIndex = 1;
+        int triangleIndex = 0;
+        for (int i = 0; i <= rayCount; i++) {
+            Vector3 vertex;
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, layerMask);
+            
+            // If raycast doesn't hits anything
+            if (raycastHit2D.collider == null) {
+                vertex = origin + GetVectorFromAngle(angle) * viewDistance;
+            } else {
+                // If the raycast hits the player
+                if (raycastHit2D.collider.CompareTag("FovID")) {
+                    SomeFunction();
+                    vertex = origin + GetVectorFromAngle(angle) * viewDistance;
+                } 
+                else {
+                    vertex = raycastHit2D.point;
+                }
             }
+
+            vertices[vertexIndex] = vertex;
+
+            if (i > 0) {
+                triangles[triangleIndex + 0] = 0; 
+                triangles[triangleIndex + 1] = vertexIndex - 1; 
+                triangles[triangleIndex + 2] = vertexIndex;
+
+                triangleIndex += 3;
+            }
+
+            vertexIndex++;
+            angle -= angleIncrease;
         }
-        return false;
+
+        mesh.vertices = vertices;
+        mesh.uv = uv;
+        mesh.triangles = triangles;
     }
 
-    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
-		if (!angleIsGlobal) {
-			angleInDegrees += transform.eulerAngles.y;
-		}
-
-        return new Vector3(Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), Mathf.Sin(angleInDegrees * Mathf.Deg2Rad));
-	}
-
-    void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.up * viewDistance);
+    public void SetOrigin(Vector3 origin) {
+        this.origin = origin;
     }
+
+    public void SetAimDirection(Vector3 aimDirection) {
+        startingAngle = GetAngleFromVectorFloat(aimDirection) - fov / 2f;
+    }
+
+    Vector3 GetVectorFromAngle(float angle) {
+        float angleRad = angle * (Mathf.PI / 180f);
+        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+    }
+
+    float GetAngleFromVectorFloat(Vector3 dir) {
+        dir = dir.normalized;
+        float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (n < 0) n += 360;
+
+        return n;
+    }
+
+    void SomeFunction() {
+        GetComponent<MeshRenderer>().material = redMaterial;
+        Debug.Log("Game over");
+    }
+
+    // void OnDrawGizmos() {
+    //     float angle = 0f;
+    //     int rayCount = 50;
+    //     float viewDistance = 50f;
+
+    //     angle = 0;
+
+    //     for (int i = 0; i <= rayCount; i++) {
+    //         Gizmos.DrawLine(Vector3.zero, GetVectorFromAngle(angle) * viewDistance);
+    //         angle -= 90 / 50;
+    //     }
+    // }
 
 }
