@@ -10,6 +10,7 @@ using static DialogueTrigger;
 public class DialogueManager : MonoBehaviour
 {
     private const string DIALOGUE_FOLDER = "Dialogues/";
+    private const string FLAT_IMAGES_FOLDER = "FlatImages/";
 
     private event EventHandler OnDialogueFinished;
 
@@ -17,24 +18,65 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textDisplay = default;
     [SerializeField] private TextMeshProUGUI charNameDisplay = default; 
     [SerializeField] private GameObject dialogueContainer = default;
+    [SerializeField] private List<Image> characterPortraits = new List<Image>(2);
     [Range(0f, .2f)] [SerializeField] private float textDelay = .1f;
     private JsonData dialogue;
     private int index;
+    private string leftCharacter = "";
+    private string rightCharacter = "";
 
     private bool inDialogue = false;
     private bool sentenceFinished = true;
 
     public bool SentenceFinished { get => sentenceFinished; }
 
-    public bool LoadDialogue(Conversation conversation)
+    private void Awake()
+    {
+        if(dialogueContainer == null)
+            dialogueContainer = GameObject.Find("DialogueContainer");
+    }
+
+    public bool LoadDialogue(string path)
     {
         Debug.Log("LoadDialogue():\ninDialogue = " + inDialogue);
         if (!inDialogue)
         {
             Debug.Log("Diálogo ativo.");
             index = 0;
-            var jsonTextFile = Resources.Load<TextAsset>(DIALOGUE_FOLDER + conversation.conversationPath);
+            var jsonTextFile = Resources.Load<TextAsset>(DIALOGUE_FOLDER + path);
+            leftCharacter = "";
+            rightCharacter = "";
+
             dialogue = JsonMapper.ToObject(jsonTextFile.text);
+
+            for (int i = 0; i < dialogue.Count; i++)
+            {
+                if (leftCharacter != "" && rightCharacter != "")
+                    break;
+
+                JsonData line = dialogue[i];
+                string speaker = "";
+                foreach (JsonData key in line.Keys)
+                {
+                    speaker = key.ToString();
+                    Debug.Log("speaker = " + speaker);
+                }
+                
+                if(speaker != "" && speaker != "EOD")
+                {
+                    Sprite characterPortrait = Resources.Load<Sprite>(FLAT_IMAGES_FOLDER + speaker);
+                    if (leftCharacter == "") { 
+                        characterPortraits[0].sprite = characterPortrait;
+                        leftCharacter = speaker;
+                    }
+                    else if (rightCharacter == "") { 
+                        characterPortraits[1].sprite = characterPortrait;
+                        rightCharacter = speaker;
+                    }
+                }
+            }
+
+            
             inDialogue = true;
             dialogueContainer.SetActive(true);
             
@@ -67,6 +109,15 @@ public class DialogueManager : MonoBehaviour
             foreach(JsonData key in line.Keys)
             {
                 speaker = key.ToString();
+            }
+            if(speaker == leftCharacter)
+            {
+                characterPortraits[0].enabled = true;
+                characterPortraits[1].enabled = false;
+            } else
+            {
+                characterPortraits[0].enabled = false;
+                characterPortraits[1].enabled = true;
             }
             /*if(!dialogueContainer.activeSelf)
                 dialogueContainer.SetActive(true);*/

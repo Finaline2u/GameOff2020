@@ -11,7 +11,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] GameObject inputTip = default;
     [SerializeField] private bool resetConversation = false;
     //[SerializeField] string path = "";
-    [SerializeField] List<Conversation> conversationList = new List<Conversation>();
+    [SerializeField] List<string> conversationList = new List<string>();
 
     private int currentConvesation = 0;
     private bool inTrigger = false;
