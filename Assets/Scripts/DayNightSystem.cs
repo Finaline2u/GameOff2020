@@ -14,6 +14,11 @@ public enum DayCycles // Enum with day and night cycles
 
 public class DayNightSystem : MonoBehaviour
 {
+    [HideInInspector] public static float globalCurrentTime;
+    [HideInInspector] public static DayCycles globalCurrentDayCycle;
+    
+    [HideInInspector] public static float staticMaxTime;
+
     [Header("Controllers")]
     
     [Tooltip("Global light 2D component, we need to use this object to place light in all map objects")]
@@ -53,12 +58,22 @@ public class DayNightSystem : MonoBehaviour
     {
         dayCycle = DayCycles.Sunrise; // start with sunrise state
         globalLight.color = sunrise; // start global color at sunrise
+        
+        // Static variables to keep time after switching scenes
+        cycleCurrentTime = globalCurrentTime;
+        dayCycle = globalCurrentDayCycle;
+
+        staticMaxTime = cycleMaxTime;
     }
 
      void Update()
      {
         // Update cycle time
         cycleCurrentTime += Time.deltaTime;
+
+        // Static variables to keep time after switching scenes
+        globalCurrentTime = cycleCurrentTime;
+        globalCurrentDayCycle = dayCycle;
 
         // Check if cycle time reach cycle duration time
         if (cycleCurrentTime >= cycleMaxTime) 
@@ -75,7 +90,7 @@ public class DayNightSystem : MonoBehaviour
         float percent = cycleCurrentTime / cycleMaxTime;
 
         // Sunrise state (you can do a lot of stuff based on every cycle state, like enable animals only in sunrise )
-        if(dayCycle == DayCycles.Sunrise)
+        if (dayCycle == DayCycles.Sunrise)
         {
             ControlLightMaps(false); // disable map light (keep enable only at night)
             globalLight.color = Color.Lerp(sunrise, day, percent);
@@ -97,14 +112,14 @@ public class DayNightSystem : MonoBehaviour
         }
 
         // Midnight state
-        if(dayCycle == DayCycles.Midnight)
+        if (dayCycle == DayCycles.Midnight)
             globalLight.color = Color.Lerp(midnight, day, percent);     
      }
 
      void ControlLightMaps(bool status)
      {
          // loop in light array of objects to enable/disable
-         if(mapLights.Length > 0)
+         if (mapLights.Length > 0)
             foreach(Light2D _light in mapLights)
                 _light.gameObject.SetActive(status);
      }

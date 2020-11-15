@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    private static string playerOrientation;
+
     private Rigidbody2D rig;
     private Animator anim;
     private BoxCollider2D col;
@@ -22,6 +24,10 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        // Turning player to correct direction on enter another scenes
+        if (playerOrientation != null)
+            anim.Play(playerOrientation);
     }
 
     void FixedUpdate() {
@@ -39,12 +45,16 @@ public class PlayerController : MonoBehaviour {
             {
                 anim.SetBool(WALKING_UP, true);
                 anim.SetBool(WALKING_LR, false);
+
+                playerOrientation = "player_idle_up";
             }
 
             if (movement.y < 0) 
             {
                 anim.SetBool(WALKING_DOWN, true);
                 anim.SetBool(WALKING_LR, false);
+
+                playerOrientation = "player_idle_down";
             }
 
             if (movement.y == 0) 
@@ -61,6 +71,8 @@ public class PlayerController : MonoBehaviour {
             {
                 if (!anim.GetBool(WALKING_UP) && !anim.GetBool(WALKING_DOWN))
                     anim.SetBool(WALKING_LR, true);
+
+                    playerOrientation = "player_idle_LR";
             }
 
             if (movement.x == 0)
