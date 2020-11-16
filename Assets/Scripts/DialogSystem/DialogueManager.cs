@@ -12,6 +12,9 @@ public class DialogueManager : MonoBehaviour
     private const string DIALOGUE_FOLDER = "Dialogues/";
     private const string FLAT_IMAGES_FOLDER = "FlatImages/";
 
+    private const string opaqueColor = "#505050";
+    private const string lightColor = "#FFFFFF";
+
     private event EventHandler OnDialogueFinished;
 
     [SerializeField] private List<DialogueTrigger> dialogueTriggerList = new List<DialogueTrigger>();
@@ -46,6 +49,8 @@ public class DialogueManager : MonoBehaviour
             var jsonTextFile = Resources.Load<TextAsset>(DIALOGUE_FOLDER + path);
             leftCharacter = "";
             rightCharacter = "";
+            characterPortraits[0].enabled = false;
+            characterPortraits[1].enabled = false;
 
             dialogue = JsonMapper.ToObject(jsonTextFile.text);
 
@@ -67,10 +72,12 @@ public class DialogueManager : MonoBehaviour
                     Sprite characterPortrait = Resources.Load<Sprite>(FLAT_IMAGES_FOLDER + speaker);
                     if (leftCharacter == "") { 
                         characterPortraits[0].sprite = characterPortrait;
+                        characterPortraits[0].enabled = true;
                         leftCharacter = speaker;
                     }
-                    else if (rightCharacter == "") { 
+                    else if (rightCharacter == "" && speaker != leftCharacter) {
                         characterPortraits[1].sprite = characterPortrait;
+                        characterPortraits[1].enabled = true;
                         rightCharacter = speaker;
                     }
                 }
@@ -101,8 +108,6 @@ public class DialogueManager : MonoBehaviour
                 charNameDisplay.text = "";
                 dialogueContainer.SetActive(false);
                 
-                //sentenceFinished = true;
-                //index = dialogue.Count - 2; //Return to last dialogue
                 return false;
             }
 
@@ -112,15 +117,14 @@ public class DialogueManager : MonoBehaviour
             }
             if(speaker == leftCharacter)
             {
-                characterPortraits[0].enabled = true;
-                characterPortraits[1].enabled = false;
+                changeCharacterPortrait(0, lightColor);
+                changeCharacterPortrait(1, opaqueColor);
             } else
             {
-                characterPortraits[0].enabled = false;
-                characterPortraits[1].enabled = true;
+                changeCharacterPortrait(0, opaqueColor);
+                changeCharacterPortrait(1, lightColor);
             }
-            /*if(!dialogueContainer.activeSelf)
-                dialogueContainer.SetActive(true);*/
+            
             charNameDisplay.text = speaker;
             textDisplay.text = "";
             sentenceFinished = false;
@@ -128,6 +132,11 @@ public class DialogueManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void changeCharacterPortrait(int position, string colorHex)
+    {
+        characterPortraits[position].color = ChangePortraitColor(colorHex);
     }
 
     public void FastPrintLine()
@@ -141,6 +150,13 @@ public class DialogueManager : MonoBehaviour
             StopAllCoroutines();
         }
         
+    }
+
+    private Color ChangePortraitColor(string colorHex)
+    {
+        Color newCol;
+        ColorUtility.TryParseHtmlString(colorHex, out newCol);
+        return newCol;
     }
 
     private IEnumerator PrintLine(string text)
