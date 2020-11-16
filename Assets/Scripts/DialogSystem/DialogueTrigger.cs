@@ -46,7 +46,8 @@ public class DialogueTrigger : MonoBehaviour
         if (keyTrigger && inTrigger)
         {
             Debug.Log("Tecla pressionada.");
-            Debug.Log("path = " + conversationList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + ",\ncurrentPath = " + currentConvesation + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);
+            Debug.Log("path = " + conversationList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + "," +
+                "\ncurrentPath = " + currentConvesation + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);
             
             inputTip.SetActive(false);
 
@@ -59,17 +60,6 @@ public class DialogueTrigger : MonoBehaviour
 
                 if (dialogueLoaded)
                     dialogueLoaded = dialogueManager.PrintLine();
-
-                /*Debug.Log("inDialogue = " + inDialogue);
-
-                if (!inDialogue)
-                {
-                    if (resetConversation)
-                        dialogueManager.ResetDialogue();
-                    else
-                        dialogueManager.ShowLastDialogue();
-                    inDialogue = dialogueManager.PrintLine();
-                }*/
             }
         }
     }
