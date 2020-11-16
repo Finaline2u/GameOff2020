@@ -41,7 +41,7 @@ public class DialogueTrigger : MonoBehaviour
             gameObject.GetComponent<DialogueTrigger>().inTrigger = false;
     }
 
-    private void RunDialogue(bool keyTrigger)
+    public void RunDialogue(bool keyTrigger)
     {
         if (keyTrigger && inTrigger)
         {

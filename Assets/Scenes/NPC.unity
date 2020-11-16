@@ -514,17 +514,17 @@ PlayableDirector:
   - key: {fileID: 0}
     value: {fileID: 0}
   - key: {fileID: 0}
-    value: {fileID: 1057666301}
-  - key: {fileID: -3161744347649935303, guid: b4573da00cd1df249916537da52b4d00, type: 2}
-    value: {fileID: 1057666301}
+    value: {fileID: 0}
   - key: {fileID: -3981270271486599723, guid: b4573da00cd1df249916537da52b4d00, type: 2}
-    value: {fileID: 1057666301}
+    value: {fileID: 0}
   - key: {fileID: 618454513122156272, guid: b4573da00cd1df249916537da52b4d00, type: 2}
-    value: {fileID: 1057666301}
+    value: {fileID: 0}
   - key: {fileID: 8700049888235394047, guid: b4573da00cd1df249916537da52b4d00, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 654110147301907819, guid: b4573da00cd1df249916537da52b4d00, type: 2}
     value: {fileID: 1057666301}
-  - key: {fileID: -6862069892888444475, guid: b4573da00cd1df249916537da52b4d00, type: 2}
-    value: {fileID: 1057666301}
+  - key: {fileID: 2312159220803341509, guid: b4573da00cd1df249916537da52b4d00, type: 2}
+    value: {fileID: 645683510}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &199874181
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Di\xE1logo"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1265,6 +1265,7 @@ GameObject:
   - component: {fileID: 645683506}
   - component: {fileID: 645683509}
   - component: {fileID: 645683508}
+  - component: {fileID: 645683510}
   m_Layer: 0
   m_Name: BityQuebrado
   m_TagString: Untagged
@@ -1457,9 +1458,38 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 2663754510571190768, guid: 5ab40742cd48c334191983ee62acc760, type: 2}
-    value: {fileID: 1057666301}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &645683510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645683501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: e54e8a99686c5374fb44c0e98abcc60d, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 645683507}
+          m_MethodName: RunDialogue
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!1 &711131188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,6 +2514,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1041923194}
   - component: {fileID: 1041923193}
+  - component: {fileID: 1041923195}
+  - component: {fileID: 1041923196}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -2527,6 +2559,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1041923195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041923192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a3f90de9c5a1645a05b3b11a3f8290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1041923193}
+  conversationList:
+  - Conversation1
+--- !u!114 &1041923196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041923192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: e54e8a99686c5374fb44c0e98abcc60d, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1041923195}
+          m_MethodName: RunDialogue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1057666291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2544,8 +2620,8 @@ GameObject:
   - component: {fileID: 1057666293}
   - component: {fileID: 1057666292}
   - component: {fileID: 1057666300}
-  - component: {fileID: 1057666301}
   - component: {fileID: 1057666302}
+  - component: {fileID: 1057666301}
   m_Layer: 0
   m_Name: Character (1)
   m_TagString: Untagged
@@ -2743,7 +2819,7 @@ Animator:
   m_GameObject: {fileID: 1057666291}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c0fb8be721bebf4429e5b1bd44477a1d, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2768,7 +2844,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 8408430301527613392, guid: 18f9a057b90f1e1498b87ed1f5495991, type: 2}
-    value: {fileID: 1057666301}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1060024817
@@ -3269,7 +3345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nome
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
