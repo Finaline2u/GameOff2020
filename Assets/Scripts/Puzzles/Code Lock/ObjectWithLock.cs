@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrokenBity : MonoBehaviour {
+public class ObjectWithLock : MonoBehaviour {
 
-    public PlayerController player;
+    private PlayerController player;
 
     public GameObject pressButton;
-    public GameObject puzzleScreen;
+    public GameObject codeLock;
+    private Animator codeLockAnim;
+    private BoxCollider2D useArea;
     
-    public BoxCollider2D fixArea;
-
-    private Animator anim;
-
-    void Start() {
-        anim = puzzleScreen.GetComponent<Animator>();
-    }
-
     private bool isNear = false;
     private bool notOpened = true;
     private bool calledThisFrame = false;
+
+    void Start() {
+        player = FindObjectOfType<PlayerController>();
+        codeLockAnim = codeLock.GetComponent<Animator>();
+        useArea = GetComponent<BoxCollider2D>();
+    }
 
     void Update() {
         HandleActivation();
@@ -41,29 +41,29 @@ public class BrokenBity : MonoBehaviour {
 
     void HandleActivation() {
         if (isNear && Input.GetKeyDown(KeyCode.E) && notOpened && !calledThisFrame)
-            StartCoroutine(ActivatePuzzleScreen());
+            StartCoroutine(ActivateLockScreen());
         
         else if (isNear && Input.GetKeyDown(KeyCode.E) && !notOpened && !calledThisFrame)
-            StartCoroutine(DeactivatePuzzleScreen(false));
+            StartCoroutine(DeactivateLockScreen(false));
     }
 
-    public IEnumerator ActivatePuzzleScreen() {
+    public IEnumerator ActivateLockScreen() {
         calledThisFrame = true;
         player.canMove = false;
 
         pressButton.SetActive(false);
-        puzzleScreen.SetActive(true);
+        codeLock.SetActive(true);
 
         yield return new WaitForSeconds(1f);
         calledThisFrame = false;
         notOpened = false;
     }
 
-    public IEnumerator DeactivatePuzzleScreen(bool isFinished) {
+    public IEnumerator DeactivateLockScreen(bool isFinished) {
         calledThisFrame = true;
         player.canMove = true;
 
-        anim.SetTrigger("Close");
+        codeLockAnim.SetTrigger("Close");
 
         yield return new WaitForSeconds(0.5f);
 
@@ -76,11 +76,11 @@ public class BrokenBity : MonoBehaviour {
         notOpened = true;
 
         if (isFinished)
-            fixArea.enabled = false;
+            useArea.enabled = false;
 
         yield return new WaitForSeconds(0.5f);
 
-        puzzleScreen.SetActive(false);
+        codeLock.SetActive(false);
     }
 
 }

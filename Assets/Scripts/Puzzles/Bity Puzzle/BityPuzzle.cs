@@ -7,12 +7,10 @@ using UnityEngine.EventSystems;
 
 public class BityPuzzle : MonoBehaviour {
 
-    public BrokenBity brokenBityScript;
+    private BrokenBity brokenBityScript;
+    private GameObject[] puzzleBlocks = new GameObject[9];
 
     private bool canRotate = true;
-
-    public GameObject puzzleParent;
-    private GameObject[] puzzleBlocks = new GameObject[9];
 
     private float[] correctValues = {
         0,
@@ -27,8 +25,10 @@ public class BityPuzzle : MonoBehaviour {
     };
 
     void Start() {
-        for (int i = 0; i < puzzleParent.transform.childCount; i++) {
-            puzzleBlocks[i] = puzzleParent.transform.GetChild(i).gameObject;
+        brokenBityScript = FindObjectOfType<BrokenBity>();
+        
+        for (int i = 0; i < transform.childCount; i++) {
+            puzzleBlocks[i] = transform.GetChild(i).gameObject;
         }
     }
 
@@ -68,10 +68,6 @@ public class BityPuzzle : MonoBehaviour {
     void FixBity() {
         canRotate = false;
         StartCoroutine(brokenBityScript.DeactivatePuzzleScreen(true));
-    }
-
-    void DeactivatePuzzleScreen() {
-        
     }
 
 }
