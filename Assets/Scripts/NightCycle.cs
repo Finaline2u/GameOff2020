@@ -6,7 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class NightCycle : MonoBehaviour
 {
 
-    [SerializeField] Light2D globalLight;
+    [SerializeField] Light2D globalLight = default;
     
     public float transitionSpeed;
     public float coroutineSpeed;
@@ -15,12 +15,12 @@ public class NightCycle : MonoBehaviour
     public float nightBrightness;
     public float dayBrightness;
 
-    private float timer = 0f;
+    /*private float timer = 0f;
     private float timerMax = 1f;
 
     private bool isDay = false;
 
-    static private bool isGettingDark = false;
+    static private bool isGettingDark = false;*/
     static private bool isDawning = false;
 
     static float lightIntensity = 1f;
@@ -32,9 +32,9 @@ public class NightCycle : MonoBehaviour
     void Start() {
         globalLight.intensity = lightIntensity;
 
-        if (globalLight.intensity >= dayBrightness)
-            isGettingDark = true;
-        else
+        if (globalLight.intensity < dayBrightness)
+        /*isGettingDark = true;
+        else*/
             isDawning = true;
 
         StartCoroutine(StartCycle());
@@ -58,10 +58,10 @@ public class NightCycle : MonoBehaviour
 
             if (transitionSpeed < 0) {
                 isDawning = false;
-                isGettingDark = true;
+                /*isGettingDark = true;*/
             }
             else if (transitionSpeed > 0) {
-                isGettingDark = false;
+                /*isGettingDark = false;*/
                 isDawning = true;
             }
 

@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] DialogueManager dialogueManager;
     [SerializeField] GameObject player = default;
     [SerializeField] GameObject inputTip = default;
-    [SerializeField] private bool resetConversation = false;
+    /*[SerializeField] private bool resetConversation = false;*/
     //[SerializeField] string path = "";
     [SerializeField] List<string> conversationList = new List<string>();
 

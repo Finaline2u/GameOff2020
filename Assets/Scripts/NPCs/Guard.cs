@@ -13,13 +13,13 @@ public class Guard : MonoBehaviour {
     WALKING_DOWN = "WalkingDOWN", 
     WALKING_LR = "WalkingLR";
 
-    [SerializeField] FieldOfView fov;
-    [SerializeField] Transform fovPosition;
-    public Transform pathParent;
-    private Transform player;
+    [SerializeField] FieldOfView fov = default;
+    [SerializeField] Transform fovPosition = default;
+    public Transform pathParent = default;
+    /*private Transform player = default;*/
     //public Light2D pointLight;
-    public Rigidbody2D rig;
-    public Animator anim;
+    public Rigidbody2D rig = default;
+    public Animator anim = default;
 
     void Start() {
         Vector3[] waypoints = new Vector3[pathParent.childCount];

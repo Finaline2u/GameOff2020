@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BityController : MonoBehaviour {
 
-    [SerializeField] Transform bityFollowPoint;
+    [SerializeField] Transform bityFollowPoint = default;
 
-    [SerializeField] GameObject circleLight;
-    [SerializeField] GameObject shortFlashlight;
-    [SerializeField] GameObject longFlashlight;
+    [SerializeField] GameObject circleLight = default;
+    [SerializeField] GameObject shortFlashlight = default;
+    [SerializeField] GameObject longFlashlight = default;
 
     private bool shortFlashlightOn = false;
     private bool longFlashlightOn = false;

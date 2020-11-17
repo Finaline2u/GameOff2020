@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     private const string opaqueColor = "#505050";
     private const string lightColor = "#FFFFFF";
 
-    private event EventHandler OnDialogueFinished;
+    /*private event EventHandler OnDialogueFinished;*/
 
     [SerializeField] private List<DialogueTrigger> dialogueTriggerList = new List<DialogueTrigger>();
     [SerializeField] private TextMeshProUGUI textDisplay = default;
@@ -51,43 +51,45 @@ public class DialogueManager : MonoBehaviour
             rightCharacter = "";
             characterPortraits[0].enabled = false;
             characterPortraits[1].enabled = false;
-
-            dialogue = JsonMapper.ToObject(jsonTextFile.text);
-
-            for (int i = 0; i < dialogue.Count; i++)
+            if(jsonTextFile != null)
             {
-                if (leftCharacter != "" && rightCharacter != "")
-                    break;
+                dialogue = JsonMapper.ToObject(jsonTextFile.text);
 
-                JsonData line = dialogue[i];
-                string speaker = "";
-                foreach (JsonData key in line.Keys)
+                for (int i = 0; i < dialogue.Count; i++)
                 {
-                    speaker = key.ToString();
-                    Debug.Log("speaker = " + speaker);
-                }
-                
-                if(speaker != "" && speaker != "EOD")
-                {
-                    Sprite characterPortrait = Resources.Load<Sprite>(FLAT_IMAGES_FOLDER + speaker);
-                    if (leftCharacter == "") { 
-                        characterPortraits[0].sprite = characterPortrait;
-                        characterPortraits[0].enabled = true;
-                        leftCharacter = speaker;
+                    if (leftCharacter != "" && rightCharacter != "")
+                        break;
+
+                    JsonData line = dialogue[i];
+                    string speaker = "";
+                    foreach (JsonData key in line.Keys)
+                    {
+                        speaker = key.ToString();
+                        Debug.Log("speaker = " + speaker);
                     }
-                    else if (rightCharacter == "" && speaker != leftCharacter) {
-                        characterPortraits[1].sprite = characterPortrait;
-                        characterPortraits[1].enabled = true;
-                        rightCharacter = speaker;
+
+                    if (speaker != "" && speaker != "EOD")
+                    {
+                        Sprite characterPortrait = Resources.Load<Sprite>(FLAT_IMAGES_FOLDER + speaker);
+                        if (leftCharacter == "")
+                        {
+                            characterPortraits[0].sprite = characterPortrait;
+                            characterPortraits[0].enabled = true;
+                            leftCharacter = speaker;
+                        }
+                        else if (rightCharacter == "" && speaker != leftCharacter)
+                        {
+                            characterPortraits[1].sprite = characterPortrait;
+                            characterPortraits[1].enabled = true;
+                            rightCharacter = speaker;
+                        }
                     }
                 }
+
+                inDialogue = true;
+                dialogueContainer.SetActive(true);
+                return true;
             }
-
-            
-            inDialogue = true;
-            dialogueContainer.SetActive(true);
-            
-            return true;
         }
         return false;
     }

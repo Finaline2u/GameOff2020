@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StunGun : MonoBehaviour {
 
-    [SerializeField] Transform firePoint;
-    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform firePoint = default;
+    [SerializeField] GameObject bulletPrefab = default;
     private float bulletForce = 20f;
     
     private float rechargeTimer = 0f;

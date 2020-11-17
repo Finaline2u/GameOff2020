@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrokenBity : Task
+public class BrokenBT : Task
 {
-    [SerializeField] private List<GameObject> bodyParts;
+    [SerializeField] private List<GameObject> bodyParts = default;
     private int foundParts = 0;
     
     public override void DoTask(GameObject character, Action onTaskFinished)
