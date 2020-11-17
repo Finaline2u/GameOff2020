@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 public class EnterOrExitPlace : MonoBehaviour {
 
     public int sceneBuildIndex;
+    private LevelLoader levelLoader;
+
+    void Start() {
+        levelLoader = FindObjectOfType<LevelLoader>(); 
+    }
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player") 
-            SceneManager.LoadScene(sceneBuildIndex);
+            StartCoroutine(levelLoader.LoadLevel(sceneBuildIndex));
     }
 
 }
