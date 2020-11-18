@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] DialogueManager dialogueManager;
     [SerializeField] GameObject player = default;
     [SerializeField] GameObject inputTip = default;
-    /*[SerializeField] private bool resetConversation = false;*/
+    [SerializeField] Task taskAfterDialogue = default;
     //[SerializeField] string path = "";
     [SerializeField] List<string> conversationList = new List<string>();
 
@@ -27,9 +27,9 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name + " colidiu com " + gameObject.name);
+        /*Debug.Log(collision.name + " colidiu com " + gameObject.name);*/
         inputTip.SetActive(true);
-        inputTip.GetComponent<InputTip>().inputText.text = "C";
+        //inputTip.GetComponent<InputTip>().inputText.text = "C";
         if (collision.gameObject == player)
             gameObject.GetComponent<DialogueTrigger>().inTrigger = true;
     }
@@ -45,7 +45,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (keyTrigger && inTrigger)
         {
-            Debug.Log("Tecla pressionada.");
+            /*Debug.Log("Tecla pressionada.");*/
             Debug.Log("path = " + conversationList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + "," +
                 "\ncurrentPath = " + currentConvesation + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);
             
@@ -58,8 +58,17 @@ public class DialogueTrigger : MonoBehaviour
                 if (!dialogueLoaded)
                     dialogueLoaded = dialogueManager.LoadDialogue(conversationList[currentConvesation]) ;
 
+                Debug.Log("dialogueLoaded = " + dialogueLoaded);
+
                 if (dialogueLoaded)
                     dialogueLoaded = dialogueManager.PrintLine();
+                if (!dialogueLoaded && taskAfterDialogue != null)
+                {
+                    Debug.Log("Começando a task");
+                    taskAfterDialogue.DoTask(player, null);
+                }
+                    
+
             }
         }
     }
@@ -73,6 +82,6 @@ public class DialogueTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RunDialogue(Input.GetKeyDown(KeyCode.C));
+        RunDialogue(Input.GetKeyDown(KeyCode.E));
     }
 }

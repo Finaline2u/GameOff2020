@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrokenBity : MonoBehaviour {
+public class BrokenBity : Task {
 
     private PlayerController player;
 
@@ -22,7 +23,9 @@ public class BrokenBity : MonoBehaviour {
     }
 
     void Update() {
-        HandleActivation();
+        if (isNear && Input.GetKeyDown(KeyCode.E) && !notOpened && !calledThisFrame)
+            StartCoroutine(DeactivatePuzzleScreen(false));
+        //HandleActivation();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -83,4 +86,8 @@ public class BrokenBity : MonoBehaviour {
         puzzleScreen.SetActive(false);
     }
 
+    public override void DoTask(GameObject character, Action onTaskFinished)
+    {
+        StartCoroutine(ActivatePuzzleScreen());
+    }
 }
