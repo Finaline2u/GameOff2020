@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] GameObject player = default;
     [SerializeField] GameObject inputTip = default;
     [SerializeField] Task taskAfterDialogue = default;
+    public UnityEvent EventAfterDialogue;
     //[SerializeField] string path = "";
     [SerializeField] List<string> conversationList = new List<string>();
 
@@ -17,6 +19,9 @@ public class DialogueTrigger : MonoBehaviour
     private bool inTrigger = false;
     private bool dialogueLoaded = false;
     private bool inDialogue = false;
+    private bool taskActive = false;
+
+    public bool TaskActive { get => taskActive; set => taskActive = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +51,8 @@ public class DialogueTrigger : MonoBehaviour
         if (keyTrigger && inTrigger)
         {
             /*Debug.Log("Tecla pressionada.");*/
-            Debug.Log("path = " + conversationList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + "," +
-                "\ncurrentPath = " + currentConvesation + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);
+            /*Debug.Log("path = " + conversationList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + "," +
+                "\ncurrentPath = " + currentConvesation + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);*/
             
             inputTip.SetActive(false);
 
@@ -58,14 +63,18 @@ public class DialogueTrigger : MonoBehaviour
                 if (!dialogueLoaded)
                     dialogueLoaded = dialogueManager.LoadDialogue(conversationList[currentConvesation]) ;
 
-                Debug.Log("dialogueLoaded = " + dialogueLoaded);
+                //Debug.Log("dialogueLoaded = " + dialogueLoaded);
 
                 if (dialogueLoaded)
                     dialogueLoaded = dialogueManager.PrintLine();
-                if (!dialogueLoaded && taskAfterDialogue != null)
+                if (!dialogueLoaded/* && taskAfterDialogue != null*/)
                 {
-                    Debug.Log("Começando a task");
-                    taskAfterDialogue.DoTask(player, null);
+                    EventAfterDialogue?.Invoke();
+                    /*Debug.Log("Começando a task");
+                    taskAfterDialogue.DoTask(player, () => {
+                        Debug.Log("Task Terminada.");
+                        ChangeConversation();
+                    });*/
                 }
                     
 
@@ -77,6 +86,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if(currentConvesation < conversationList.Count)
             currentConvesation++;
+        RunDialogue(true);
     }
 
     // Update is called once per frame

@@ -9,6 +9,7 @@ public class BrokenBity : Task {
 
     public GameObject pressButton;
     public GameObject puzzleScreen;
+    public DialogueTrigger dialogueTrigger;
     private BoxCollider2D fixArea;
     private Animator anim;
 
@@ -28,17 +29,30 @@ public class BrokenBity : Task {
         //HandleActivation();
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Player") {
-           pressButton.SetActive(true);
-           isNear = true;
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            pressButton.SetActive(true);
+            isNear = true;
         }
     }
 
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.tag == "Player") {
-           pressButton.SetActive(false);
-           isNear = false;
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            pressButton.SetActive(false);
+            isNear = false;
+        }
+    }
+
+    public void OpenPuzzle()
+    {
+        if (!puzzleScreen.GetComponent<BityPuzzle>().IsFinished)
+        {
+            dialogueTrigger.enabled = false;
+            StartCoroutine(ActivatePuzzleScreen());
         }
     }
 
@@ -79,15 +93,24 @@ public class BrokenBity : Task {
         notOpened = true;
 
         if (isFinished)
+        {
             fixArea.enabled = false;
+            onTaskFinished?.Invoke();
+        }
+            
 
         yield return new WaitForSeconds(0.5f);
 
         puzzleScreen.SetActive(false);
+        dialogueTrigger.enabled = true;
     }
 
     public override void DoTask(GameObject character, Action onTaskFinished)
     {
-        StartCoroutine(ActivatePuzzleScreen());
+        /*if (!puzzleScreen.GetComponent<BityPuzzle>().IsFinished)
+        {
+            dialogueTrigger.TaskActive = true;
+            StartCoroutine(ActivatePuzzleScreen());
+        }*/
     }
 }

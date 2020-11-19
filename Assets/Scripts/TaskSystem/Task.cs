@@ -1,9 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Task: MonoBehaviour
 {
     public static event EventHandler OnTaskClicked;
+    public UnityEvent onTaskFinished;
     protected bool isCooldown = false;
 
     public bool IsCooldown { get => isCooldown; }

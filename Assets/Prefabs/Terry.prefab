@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4780684160253294101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.303, y: 0.37, z: 0}
+  m_LocalPosition: {x: -0.303, y: -0.052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4780684161642433966}
@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 4780684161248197252}
   - component: {fileID: 4780684161248197304}
   - component: {fileID: 4780684161248197253}
+  - component: {fileID: 1947608969076114680}
   m_Layer: 0
   m_Name: Terry
   m_TagString: Player
@@ -90,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 4780684161248197305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.38, y: 2.0452, z: -0.24033}
-  m_LocalScale: {x: 4.5473785, y: 4.5473785, z: 4.5473785}
+  m_LocalScale: {x: 4.025385, y: 4.025385, z: 4.025385}
   m_Children:
   - {fileID: 4780684161642433966}
   m_Father: {fileID: 0}
@@ -181,7 +182,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0016963556, y: 0.11721036}
+  m_Offset: {x: -0.004701458, y: 0.07349996}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -192,7 +193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16017531, y: 0.22805053}
+  m_Size: {x: 0.15788947, y: 0.14683703}
   m_EdgeRadius: 0
 --- !u!95 &4780684161248197304
 Animator:
@@ -227,6 +228,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   movement: {x: 0, y: 0}
+--- !u!114 &1947608969076114680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4780684161248197305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53471f8316c03a2478ea565bc70328d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4780684161642433967
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +314,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.028649583, y: -1.8129393}

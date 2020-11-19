@@ -92,5 +92,4 @@ public class PlayerController : MonoBehaviour {
         if (canMove)
             rig.velocity = new Vector2(movement.x, movement.y).normalized * speed;
     }
-
 }

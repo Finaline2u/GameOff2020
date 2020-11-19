@@ -10,7 +10,10 @@ public class BityPuzzle : MonoBehaviour {
     private BrokenBity brokenBityScript;
     private GameObject[] puzzleBlocks = new GameObject[9];
 
+    private bool isFinished = false;
     private bool canRotate = true;
+
+    public bool IsFinished { get => isFinished; }
 
     private float[] correctValues = {
         0,
@@ -23,6 +26,8 @@ public class BityPuzzle : MonoBehaviour {
         180,
         180
     };
+
+    
 
     void Start() {
         brokenBityScript = FindObjectOfType<BrokenBity>();
@@ -67,6 +72,7 @@ public class BityPuzzle : MonoBehaviour {
 
     void FixBity() {
         canRotate = false;
+        isFinished = true;
         StartCoroutine(brokenBityScript.DeactivatePuzzleScreen(true));
     }
 
