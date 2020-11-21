@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour {
 
-    private Inventory inventory;
-    private GameObject pressButton;
-    public GameObject itemButton;
+    private Inventory inventory = default;
+    private GameObject pressButton = default;
+    public GameObject itemButton = default;
 
     public Items ID = default;
 
@@ -25,6 +25,7 @@ public class Pickup : MonoBehaviour {
             {
                 if (inventory.isFull[i] == false) 
                 {
+                    SpawnItem();
                     inventory.isFull[i] = true;
                     Instantiate(itemButton, inventory.slots[i].transform, false);
 
@@ -36,6 +37,11 @@ public class Pickup : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void SpawnItem() {
+        ItemInfo ItemInfo = new ItemInfo(transform.position);
+        FindObjectOfType<ItemRandomSpawner>().ItemCollectedInfo(ItemInfo);
     }
 
     void OnTriggerEnter2D(Collider2D other) {

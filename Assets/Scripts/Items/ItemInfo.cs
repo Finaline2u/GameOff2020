@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInfo
-{
-    public string itemTag;
+public class ItemInfo {
     public Vector3 spawnPosition;
 
-    public ItemInfo(string itemTag, Vector3 spawnPosition) {
-        this.itemTag = itemTag;
+    public ItemInfo(Vector3 spawnPosition) {
         this.spawnPosition = spawnPosition;
     }
 }
