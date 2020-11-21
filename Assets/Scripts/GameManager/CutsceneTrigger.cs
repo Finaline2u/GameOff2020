@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,7 +25,7 @@ public class CutsceneTrigger : MonoBehaviour
         }
     }
 
-    void PlayCutscene()
+    public void PlayCutscene()
     {
         if (alreadyPlayed)
             return;
