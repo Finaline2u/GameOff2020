@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
 
+    [HideInInspector]
+    public int scrapAmount = default;
+
     [HideInInspector] 
     public List<GameObject> slots = new List<GameObject>();
     
@@ -31,4 +34,8 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+}
+
+public enum Items {
+    Scrap = 1
 }

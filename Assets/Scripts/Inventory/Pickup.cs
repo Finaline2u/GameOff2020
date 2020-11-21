@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickup : MonoBehaviour
-{
+public class Pickup : MonoBehaviour {
 
     private Inventory inventory;
     private GameObject pressButton;
     public GameObject itemButton;
+
+    public Items ID = default;
 
     private const KeyCode USE_BUTTON = KeyCode.E;
     private bool nearToItem = false;
@@ -26,6 +27,10 @@ public class Pickup : MonoBehaviour
                 {
                     inventory.isFull[i] = true;
                     Instantiate(itemButton, inventory.slots[i].transform, false);
+
+                    if (ID == Items.Scrap)
+                        inventory.scrapAmount++;
+
                     Destroy(gameObject);
                     break;
                 }
