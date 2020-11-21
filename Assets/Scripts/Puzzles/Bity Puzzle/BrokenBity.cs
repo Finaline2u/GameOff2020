@@ -10,7 +10,6 @@ public class BrokenBity : Task {
     public GameObject pressButton;
     public GameObject puzzleScreen;
     public DialogueTrigger dialogueTrigger;
-    private BoxCollider2D fixArea;
     private Animator anim;
 
     private bool isNear = false;
@@ -19,14 +18,12 @@ public class BrokenBity : Task {
 
     void Start() {
         player = FindObjectOfType<PlayerController>();
-        fixArea = GetComponent<BoxCollider2D>();
         anim = puzzleScreen.GetComponent<Animator>();
     }
 
     void Update() {
         if (isNear && Input.GetKeyDown(KeyCode.E) && !notOpened && !calledThisFrame)
             StartCoroutine(DeactivatePuzzleScreen(false));
-        //HandleActivation();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -94,7 +91,7 @@ public class BrokenBity : Task {
 
         if (isFinished)
         {
-            fixArea.enabled = false;
+            dialogueTrigger.enabled = true;
             onTaskFinished?.Invoke();
         }
             
@@ -107,10 +104,5 @@ public class BrokenBity : Task {
 
     public override void DoTask(GameObject character, Action onTaskFinished)
     {
-        /*if (!puzzleScreen.GetComponent<BityPuzzle>().IsFinished)
-        {
-            dialogueTrigger.TaskActive = true;
-            StartCoroutine(ActivatePuzzleScreen());
-        }*/
     }
 }

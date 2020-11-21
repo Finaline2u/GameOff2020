@@ -11,14 +11,21 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] GameObject player = default;
     [SerializeField] GameObject inputTip = default;
     [SerializeField] Task taskAfterDialogue = default;
-    public UnityEvent EventAfterDialogue;
-    //[SerializeField] string path = "";
-    [SerializeField] List<string> conversationList = new List<string>();
+    
+    [SerializeField] List<DialogContent> conversationList = new List<DialogContent>();
+
+    [Serializable]
+    public struct DialogContent
+    {
+        public string currentConversation;
+        public UnityEvent EventAfterDialogue;
+    }
 
     private int currentConvesation = 0;
     private bool inTrigger = false;
     private bool dialogueLoaded = false;
     private bool inDialogue = false;
+    private bool inCutscene = false;
     private bool taskActive = false;
 
     public bool TaskActive { get => taskActive; set => taskActive = value; }
@@ -32,9 +39,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*Debug.Log(collision.name + " colidiu com " + gameObject.name);*/
         inputTip.SetActive(true);
-        //inputTip.GetComponent<InputTip>().inputText.text = "C";
         if (collision.gameObject == player)
             gameObject.GetComponent<DialogueTrigger>().inTrigger = true;
     }
@@ -46,14 +51,10 @@ public class DialogueTrigger : MonoBehaviour
             gameObject.GetComponent<DialogueTrigger>().inTrigger = false;
     }
 
-    public void RunDialogue(bool keyTrigger)
+    private void RunDialogue(bool keyTrigger)
     {
-        if (keyTrigger && inTrigger)
-        {
-            /*Debug.Log("Tecla pressionada.");*/
-            /*Debug.Log("path = " + conversationList[0] + ", inTrigger = " + inTrigger + ", dialogueLoaded = " + dialogueLoaded + "," +
-                "\ncurrentPath = " + currentConvesation + ", inDialogue = " + inDialogue + ", dialogManager.SentenceFinished = " + dialogueManager.SentenceFinished);*/
-            
+        if (keyTrigger && (inTrigger || inCutscene))
+        {   
             inputTip.SetActive(false);
 
             if (!dialogueManager.SentenceFinished)
@@ -61,25 +62,25 @@ public class DialogueTrigger : MonoBehaviour
             else
             {
                 if (!dialogueLoaded)
-                    dialogueLoaded = dialogueManager.LoadDialogue(conversationList[currentConvesation]) ;
-
-                //Debug.Log("dialogueLoaded = " + dialogueLoaded);
+                    dialogueLoaded = dialogueManager.LoadDialogue(conversationList[currentConvesation].currentConversation) ;
 
                 if (dialogueLoaded)
                     dialogueLoaded = dialogueManager.PrintLine();
-                if (!dialogueLoaded/* && taskAfterDialogue != null*/)
+                if (!dialogueLoaded)
                 {
-                    EventAfterDialogue?.Invoke();
-                    /*Debug.Log("Começando a task");
-                    taskAfterDialogue.DoTask(player, () => {
-                        Debug.Log("Task Terminada.");
-                        ChangeConversation();
-                    });*/
+                    conversationList[currentConvesation].EventAfterDialogue?.Invoke();
+                    inCutscene = false;
                 }
                     
 
             }
         }
+    }
+
+    public void RunDialogue()
+    {
+        inCutscene = true;
+        RunDialogue(true);
     }
 
     public void ChangeConversation()
