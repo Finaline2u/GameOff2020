@@ -49,6 +49,8 @@ public class ObjectWithLock : MonoBehaviour {
 
     public IEnumerator ActivateLockScreen() {
         calledThisFrame = true;
+
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         player.canMove = false;
 
         pressButton.SetActive(false);
