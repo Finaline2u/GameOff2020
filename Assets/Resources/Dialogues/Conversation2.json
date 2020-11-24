@@ -4,5 +4,6 @@
     {"BT": "Diga que o amo e que estou esperando por ele."},
     {"Terry": "Alice..."},
     {"BT": "... Senhor Terry?"},
-    {"Terry": "Ei amigão..."}
+    {"Terry": "Ei amigão..."},
+    {"EOD": "EOD"}
 ]

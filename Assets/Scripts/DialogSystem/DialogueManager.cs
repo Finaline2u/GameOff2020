@@ -101,7 +101,7 @@ public class DialogueManager : MonoBehaviour
             string speaker = "";
             JsonData line = dialogue[index];
             string dialogueText = line[0].ToString();
-            /*Debug.Log("dialogueText = " + dialogueText);*/
+            Debug.Log("dialogueText = " + dialogueText);
 
             if (dialogueText == "EOD")
             {

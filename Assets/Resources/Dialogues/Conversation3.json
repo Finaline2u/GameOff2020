@@ -1,5 +1,6 @@
 [
     {"BT": "Senhor Terry é você, finalmente te achei... Minhas ultimas memórias é que estávamos sendo evacuados, e fui comandado por senhorita Alice para te encontrar... Mas fui atingido em um protesto que acontecia enquanto a nave Armostrong-050 era lançada, minha energia estava fraca então o lugar mais próximo era a casa de senhorita Alice... Sinto muito senhor Terry, eu não cheguei ao senhor a tempo."},
     {"Terry": "Relaxa amigão, o que importa é que te encontrei, teria como tocar novamente o áudio que você acabou de tocar?"},
-    {"BT": "Sim, senhor! Pode deixar..."}
+    {"BT": "Sim, senhor! Pode deixar..."},
+    {"EOD": "EOD"}
 ]

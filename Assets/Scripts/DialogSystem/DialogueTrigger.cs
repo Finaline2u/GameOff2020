@@ -71,8 +71,6 @@ public class DialogueTrigger : MonoBehaviour
                     conversationList[currentConvesation].EventAfterDialogue?.Invoke();
                     inCutscene = false;
                 }
-                    
-
             }
         }
     }
@@ -85,9 +83,12 @@ public class DialogueTrigger : MonoBehaviour
 
     public void ChangeConversation()
     {
-        if(currentConvesation < conversationList.Count)
+        if(currentConvesation < conversationList.Count) {
+            Debug.Log("Mudando Diálogo");
             currentConvesation++;
-        RunDialogue(true);
+            RunDialogue();
+        }
+        
     }
 
     // Update is called once per frame

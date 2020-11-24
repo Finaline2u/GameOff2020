@@ -37,6 +37,7 @@ public class CutsceneTrigger : MonoBehaviour
 
     void FinishCutscene()
     {
+        Debug.Log("Encerrando cutscene.");
         OnStop?.Invoke();
     }
 

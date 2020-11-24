@@ -93,7 +93,7 @@ public class BrokenBity : Task {
 
         if (isFinished)
         {
-            dialogueTrigger.enabled = true;
+            dialogueTrigger.enabled = false;
             onTaskFinished?.Invoke();
         }
             
@@ -101,7 +101,7 @@ public class BrokenBity : Task {
         yield return new WaitForSeconds(0.5f);
 
         puzzleScreen.SetActive(false);
-        dialogueTrigger.enabled = true;
+        //dialogueTrigger.enabled = true;
     }
 
     public override void DoTask(GameObject character, Action onTaskFinished)
