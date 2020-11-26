@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     WALKING_LR = "WalkingLR";
 
     [HideInInspector] public Vector2 movement;
-    private float speed = 5f;
+    public float speed = 4.5f;
 
     void Start() {
         rig = GetComponent<Rigidbody2D>();
@@ -91,5 +91,11 @@ public class PlayerController : MonoBehaviour {
 
         if (canMove)
             rig.velocity = new Vector2(movement.x, movement.y).normalized * speed;
+        else {
+            anim.SetBool(WALKING_DOWN, false);
+            anim.SetBool(WALKING_UP, false);
+            anim.SetBool(WALKING_LR, false);
+        }
     }
+
 }

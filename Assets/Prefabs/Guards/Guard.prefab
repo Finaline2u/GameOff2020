@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3151307420223737830}
   - component: {fileID: 3151307420223737825}
   - component: {fileID: 3151307420223737828}
-  - component: {fileID: 3151307420223737829}
   - component: {fileID: 3151307420223737850}
   - component: {fileID: 3151307420223737831}
+  - component: {fileID: 229127011}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3151307420223737824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.55, y: 6.46, z: 0}
-  m_LocalScale: {x: 4.9316916, y: 4.9316916, z: 4.9316916}
+  m_LocalScale: {x: 4.4217744, y: 4.4217744, z: 4.4217744}
   m_Children:
   - {fileID: 3151307422084352082}
   m_Father: {fileID: 0}
@@ -75,9 +75,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -6327458444383126749, guid: 06e237be6cddbb54191a5365ec3b167b,
+  m_Sprite: {fileID: -930126831279038455, guid: be12f31ad7526cf458bb4a920427f2ad,
     type: 3}
-  m_Color: {r: 0, g: 1, b: 0.06640315, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -108,25 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!95 &3151307420223737829
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3151307420223737824}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3b007796d4bd99645bd0cf8668b64732, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &3151307420223737850
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +125,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.32, y: 0.47}
+    oldSize: {x: 0.32, y: 0.48}
     newSize: {x: 0.38, y: 0.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -165,13 +146,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a5bdd72aad8142a54ab902e54db17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.68
-  waitTime: 4.62
+  speed: 3
+  waitTime: 0.2
   fov: {fileID: 0}
   fovPosition: {fileID: 3151307422084352082}
   pathParent: {fileID: 0}
   rig: {fileID: 3151307420223737828}
-  anim: {fileID: 3151307420223737829}
+  anim: {fileID: 229127011}
+--- !u!95 &229127011
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151307420223737824}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 91cc53ba923f394489069a487a8ae540, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3151307422084352093
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3151307422084352093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.104, z: 0}
+  m_LocalPosition: {x: 0.108, y: 0.163, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3151307420223737830}

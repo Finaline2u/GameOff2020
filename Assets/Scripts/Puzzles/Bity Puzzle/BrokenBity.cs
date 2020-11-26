@@ -106,5 +106,6 @@ public class BrokenBity : Task {
 
     public override void DoTask(GameObject character, Action onTaskFinished)
     {
+        
     }
 }

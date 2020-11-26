@@ -17,7 +17,6 @@ public class DialogueManager : MonoBehaviour
 
     /*private event EventHandler OnDialogueFinished;*/
 
-    [SerializeField] private List<DialogueTrigger> dialogueTriggerList = new List<DialogueTrigger>();
     [SerializeField] private TextMeshProUGUI textDisplay = default;
     [SerializeField] private TextMeshProUGUI charNameDisplay = default; 
     [SerializeField] private GameObject dialogueContainer = default;

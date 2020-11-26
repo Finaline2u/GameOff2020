@@ -7,19 +7,29 @@ using UnityEngine.Playables;
 
 public class CutsceneTrigger : MonoBehaviour
 {
-    public PlayableDirector cutscene;
+    private PlayableDirector cutscene;
     public bool playOnTrigger;
+    public bool isIntro = false;
     public UnityEvent OnPlay;
     public UnityEvent OnStop;
 
     private bool playerIsTrigger;
     private bool alreadyPlayed;
 
+    void Start() {
+        cutscene = GetComponent<PlayableDirector>();
+        
+        if (isIntro) {
+            cutscene.playOnAwake = false;
+            PlayCutscene();
+        }
+    }
+
     private void Update()
     {
         if (playerIsTrigger)
         {
-            if(Input.GetKeyDown(KeyCode.E)){
+            if (Input.GetKeyDown(KeyCode.E)){
                 PlayCutscene();
             }
         }

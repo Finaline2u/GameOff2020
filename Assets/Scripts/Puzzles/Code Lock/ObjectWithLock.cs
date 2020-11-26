@@ -6,6 +6,8 @@ public class ObjectWithLock : MonoBehaviour {
 
     private PlayerController player;
 
+    public float timeBtwOpen = 1f;
+
     public GameObject pressButton;
     public GameObject codeLock;
     private Animator codeLockAnim;
@@ -56,7 +58,7 @@ public class ObjectWithLock : MonoBehaviour {
         pressButton.SetActive(false);
         codeLock.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timeBtwOpen);
         calledThisFrame = false;
         notOpened = false;
     }
@@ -67,12 +69,12 @@ public class ObjectWithLock : MonoBehaviour {
 
         codeLockAnim.SetTrigger("Close");
 
-        yield return new WaitForSeconds(0.5f);
-
         if (!isFinished)
             pressButton.SetActive(true);
         else
             pressButton.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
 
         calledThisFrame = false;
         notOpened = true;

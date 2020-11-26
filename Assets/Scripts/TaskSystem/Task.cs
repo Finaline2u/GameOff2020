@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Task: MonoBehaviour
+public abstract class Task : MonoBehaviour
 {
     public static event EventHandler OnTaskClicked;
     public UnityEvent onTaskFinished;
@@ -22,3 +22,11 @@ public abstract class Task: MonoBehaviour
 
     public abstract void DoTask(GameObject character, Action onTaskFinished);
 }
+
+#region
+/* 
+Task bityBroken;
+bityBroken.DoTask(this, () => {
+});
+*/
+#endregion

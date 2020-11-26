@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -83,7 +83,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void ChangeConversation()
     {
-        if(currentConvesation < conversationList.Count) {
+        if (currentConvesation < conversationList.Count) {
             Debug.Log("Mudando Diálogo");
             currentConvesation++;
             RunDialogue();
