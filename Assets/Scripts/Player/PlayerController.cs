@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
 
     private static string playerOrientation;
 
-    private Rigidbody2D rig;
+    [HideInInspector] public Rigidbody2D rig;
+
     private Animator anim;
     private BoxCollider2D col;
 
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     WALKING_DOWN = "WalkingDOWN", 
     WALKING_LR = "WalkingLR";
 
-    [HideInInspector] public Vector2 movement;
+    public Vector2 movement;
     public float speed = 4.5f;
 
     void Start() {
@@ -83,9 +84,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (!usingGun) {
-            if (movement.x < 0)
+            if (movement.x < 0 && canMove)
                 transform.eulerAngles = new Vector3(0, -180f, 0);
-            else if (movement.x > 0)
+            else if (movement.x > 0 && canMove)
                 transform.eulerAngles = new Vector3(0, 0, 0);
         }
 

@@ -11,6 +11,8 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] GameObject player = default;
     [SerializeField] GameObject inputTip = default;
     [SerializeField] Task taskAfterDialogue = default;
+
+    [SerializeField] bool playerCanMove = false;
     
     [SerializeField] List<DialogContent> conversationList = new List<DialogContent>();
 
@@ -54,7 +56,7 @@ public class DialogueTrigger : MonoBehaviour
     private void RunDialogue(bool keyTrigger)
     {
         if (keyTrigger && (inTrigger || inCutscene))
-        {   
+        {
             inputTip.SetActive(false);
 
             if (!dialogueManager.SentenceFinished)
@@ -77,6 +79,8 @@ public class DialogueTrigger : MonoBehaviour
 
     public void RunDialogue()
     {
+        Invoke("HandlePlayerMoveBool", 0.2f);
+
         inCutscene = true;
         RunDialogue(true);
     }
@@ -94,6 +98,15 @@ public class DialogueTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RunDialogue(Input.GetKeyDown(KeyCode.E));
+        RunDialogue(Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0));
     }
+
+    void HandlePlayerMoveBool() {
+        player.GetComponent<PlayerController>().canMove = playerCanMove;
+
+        if (!playerCanMove) {
+            FindObjectOfType<PlayerController>().rig.velocity = new Vector2(0f, 0f);
+        }
+    }
+
 }

@@ -16,9 +16,15 @@ public class BrokenBity : Task {
     private bool notOpened = true;
     private bool calledThisFrame = false;
 
+    private static bool isBitFixed = false;
+
     void Start() {
         player = FindObjectOfType<PlayerController>();
         anim = puzzleScreen.GetComponent<Animator>();
+
+        if (isBitFixed) {
+            Destroy(gameObject);
+        }
     }
 
     void Update() {
@@ -95,6 +101,9 @@ public class BrokenBity : Task {
         {
             dialogueTrigger.enabled = false;
             onTaskFinished?.Invoke();
+
+            isBitFixed = true;
+            Destroy(gameObject, 2f);
         }
             
 

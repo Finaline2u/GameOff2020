@@ -50,7 +50,8 @@ public class DialogueManager : MonoBehaviour
             rightCharacter = "";
             characterPortraits[0].enabled = false;
             characterPortraits[1].enabled = false;
-            if(jsonTextFile != null)
+
+            if (jsonTextFile != null)
             {
                 dialogue = JsonMapper.ToObject(jsonTextFile.text);
 
@@ -198,5 +199,9 @@ public class DialogueManager : MonoBehaviour
     {
         /*if (Input.GetKeyDown(KeyCode.C))
             PrintLine();*/
+    }
+
+    public void LetPlayerMove() {
+        FindObjectOfType<PlayerController>().canMove = true;
     }
 }
