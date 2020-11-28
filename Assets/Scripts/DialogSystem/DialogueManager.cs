@@ -40,10 +40,10 @@ public class DialogueManager : MonoBehaviour
 
     public bool LoadDialogue(string path)
     {
-        /*Debug.Log("LoadDialogue():\ninDialogue = " + inDialogue);*/
+        //Debug.Log("LoadDialogue():\ninDialogue = " + inDialogue);
         if (!inDialogue)
         {
-            /*Debug.Log("Diálogo ativo.");*/
+            //Debug.Log("Diálogo ativo.");
             index = 0;
             var jsonTextFile = Resources.Load<TextAsset>(DIALOGUE_FOLDER + path);
             leftCharacter = "";
@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
                     foreach (JsonData key in line.Keys)
                     {
                         speaker = key.ToString();
-                        /*Debug.Log("speaker = " + speaker);*/
+                        //Debug.Log("speaker = " + speaker);
                     }
 
                     if (speaker != "" && speaker != "EOD")
@@ -101,7 +101,7 @@ public class DialogueManager : MonoBehaviour
             string speaker = "";
             JsonData line = dialogue[index];
             string dialogueText = line[0].ToString();
-            Debug.Log("dialogueText = " + dialogueText);
+            //Debug.Log("dialogueText = " + dialogueText);
 
             if (dialogueText == "EOD")
             {

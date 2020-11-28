@@ -8,14 +8,16 @@ public class Pickup : MonoBehaviour {
     private GameObject pressButton = default;
     public GameObject itemButton = default;
 
+    private bool spawnItemAfterPick = false;
+
     public Items ID = default;
 
     private const KeyCode USE_BUTTON = KeyCode.E;
     private bool nearToItem = false;
 
     void Start() {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        pressButton = GameObject.Find("Canvas").transform.Find("Press Button").gameObject;
+        pressButton = GameObject.Find("Backpack Canvas").transform.Find("Press Button").gameObject;
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();  
     }
 
     void Update() {
@@ -25,7 +27,9 @@ public class Pickup : MonoBehaviour {
             {
                 if (inventory.isFull[i] == false) 
                 {
-                    SpawnItem();
+                    if (spawnItemAfterPick)
+                        SpawnItem();
+                    
                     inventory.isFull[i] = true;
                     Instantiate(itemButton, inventory.slots[i].transform, false);
 

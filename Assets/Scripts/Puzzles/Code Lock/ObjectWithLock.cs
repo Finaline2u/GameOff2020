@@ -9,9 +9,9 @@ public class ObjectWithLock : MonoBehaviour {
     public float timeBtwOpen = 1f;
 
     public GameObject pressButton;
-    public GameObject codeLock;
+    public GameObject codeLockUI;
     private Animator codeLockAnim;
-    private BoxCollider2D useArea;
+    private CircleCollider2D useArea;
     
     private bool isNear = false;
     private bool notOpened = true;
@@ -19,8 +19,8 @@ public class ObjectWithLock : MonoBehaviour {
 
     void Start() {
         player = FindObjectOfType<PlayerController>();
-        codeLockAnim = codeLock.GetComponent<Animator>();
-        useArea = GetComponent<BoxCollider2D>();
+        codeLockAnim = codeLockUI.GetComponent<Animator>();
+        useArea = GetComponent<CircleCollider2D>();
     }
 
     void Update() {
@@ -56,7 +56,7 @@ public class ObjectWithLock : MonoBehaviour {
         player.canMove = false;
 
         pressButton.SetActive(false);
-        codeLock.SetActive(true);
+        codeLockUI.SetActive(true);
 
         yield return new WaitForSeconds(timeBtwOpen);
         calledThisFrame = false;
@@ -84,7 +84,7 @@ public class ObjectWithLock : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
 
-        codeLock.SetActive(false);
+        codeLockUI.SetActive(false);
     }
 
 }

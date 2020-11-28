@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class CodeLock : MonoBehaviour {
 
     [Header("Password to unlock the lock")]
     public string password = "55239";
+
+    public UnityEvent OnUnlock;
 
     private ObjectWithLock objectWithLock;
     private GameObject codeLock;
@@ -79,6 +82,8 @@ public class CodeLock : MonoBehaviour {
         yield return new WaitForSeconds(0.4f);
 
         greenLight.SetActive(false);
+
+        OnUnlock?.Invoke();
 
         StartCoroutine(objectWithLock.DeactivateLockScreen(true));
     }

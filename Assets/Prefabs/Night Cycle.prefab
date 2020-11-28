@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalLight: {fileID: 2167171661334049972}
   cycleCurrentTime: 0
-  cycleMaxTime: 60
+  cycleMaxTime: 30
   dayCycle: 0
   sunrise: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
   day: {r: 1, g: 1, b: 1, a: 0}

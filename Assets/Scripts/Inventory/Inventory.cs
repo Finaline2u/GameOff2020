@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
 
+    public Transform inventory;
+
     [HideInInspector]
     public int scrapAmount = default;
 
@@ -16,7 +18,6 @@ public class Inventory : MonoBehaviour {
 
     void Awake() {
         int qntSlots = 0;
-        Transform inventory = GameObject.Find("Canvas").transform.Find("Inventory");
         
         // Adding each GameObject slot to the list
         foreach(Transform slot in inventory)
