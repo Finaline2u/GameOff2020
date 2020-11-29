@@ -19,6 +19,10 @@ public class BityController : MonoBehaviour {
     private bool longFlashlightOn = false;
 
     public bool canFollow = true;
+    
+    public bool isLR = false;
+    public bool isUP = false;
+    public bool isDOWN = false;
 
     private float followSpeed = 1.8f;
 
@@ -93,6 +97,22 @@ public class BityController : MonoBehaviour {
                     bity.transform.eulerAngles = new Vector3(bity.transform.eulerAngles.x, 0f, bity.transform.eulerAngles.z);
                 }
             }
+        }
+        
+        if (isUP) {
+            bityAnim.SetBool("Up", true);
+            bityAnim.SetBool("Down", false);
+            bityAnim.SetBool("LR", false);
+        }
+        if (isDOWN) {
+            bityAnim.SetBool("Up", false);
+            bityAnim.SetBool("Down", true);
+            bityAnim.SetBool("LR", false);
+        }
+        if (isLR) {
+            bityAnim.SetBool("Up", false);
+            bityAnim.SetBool("Down", false);
+            bityAnim.SetBool("LR", true);
         }
     }
 

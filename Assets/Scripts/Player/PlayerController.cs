@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour {
 
     private bool usingGun = false;
 
+    public bool isIdleUp = false;
+    public bool isIdleDown = false;
+    public bool isIdleLR = false;
+
     private const string WALKING_UP = "WalkingUP", 
     WALKING_DOWN = "WalkingDOWN", 
     WALKING_LR = "WalkingLR";
@@ -96,6 +100,16 @@ public class PlayerController : MonoBehaviour {
             anim.SetBool(WALKING_DOWN, false);
             anim.SetBool(WALKING_UP, false);
             anim.SetBool(WALKING_LR, false);
+        }
+
+        if (isIdleUp)
+            anim.Play("player_idle_up");
+
+        if (isIdleDown)
+            anim.Play("player_idle_down");
+
+        if (isIdleLR) {
+            anim.Play("player_idle_LR");
         }
     }
 

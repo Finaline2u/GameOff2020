@@ -36,7 +36,8 @@ public class DialogueTrigger : MonoBehaviour
     void Start()
     {
         if (dialogueManager == null)
-            dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+            dialogueManager = FindObjectOfType<DialogueManager>();
+            //dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,7 +65,7 @@ public class DialogueTrigger : MonoBehaviour
             else
             {
                 if (!dialogueLoaded)
-                    dialogueLoaded = dialogueManager.LoadDialogue(conversationList[currentConvesation].currentConversation) ;
+                    dialogueLoaded = dialogueManager.LoadDialogue(conversationList[currentConvesation].currentConversation);
 
                 if (dialogueLoaded)
                     dialogueLoaded = dialogueManager.PrintLine();
@@ -92,7 +93,6 @@ public class DialogueTrigger : MonoBehaviour
             currentConvesation++;
             RunDialogue();
         }
-        
     }
 
     // Update is called once per frame
