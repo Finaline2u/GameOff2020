@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{f620718f-89a6-4af8-a222-d121e6c09681}">
 		<property name="assetPath">
-			<value>sfx/bity_lanterna (foco grande).wav</value>
+			<value>sfx/bity_lanterna_foco aberto.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
