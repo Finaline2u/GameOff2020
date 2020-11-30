@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{1b37aba6-9871-4e00-93fa-25ec40199650}">
 		<property name="assetPath">
-			<value>music/cutscenes_giandro/neutro.wav</value>
+			<value>music/cutscenes_giandro/neutra.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
