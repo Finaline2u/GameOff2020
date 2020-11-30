@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour {
     public Transform inventory;
 
     [HideInInspector]
-    public int scrapAmount = default;
+    public static int scrapAmount = default;
 
     [HideInInspector] 
     public List<GameObject> slots = new List<GameObject>();
@@ -15,6 +15,8 @@ public class Inventory : MonoBehaviour {
     // To find out which slot is free
     [HideInInspector] 
     public bool[] isFull = null;
+
+    public GameObject itemButton;
 
     void Awake() {
         int qntSlots = 0;
@@ -32,6 +34,14 @@ public class Inventory : MonoBehaviour {
         // Defining the index of each slot
         for (int i = 0; i < slots.Count; i++) {
             slots[i].GetComponent<Slot>().i = i;
+        }
+    }
+
+    void Start() {
+        for (int i = 0; i < Inventory.scrapAmount; i++) 
+        {
+            isFull[i] = true;
+            Instantiate(itemButton, slots[i].transform, false);
         }
     }
 

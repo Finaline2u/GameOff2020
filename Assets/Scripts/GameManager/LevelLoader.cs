@@ -15,10 +15,14 @@ public class LevelLoader : MonoBehaviour {
     }
 
     public void LoadNextLevel() {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(LoadLevelCoroutine(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    public IEnumerator LoadLevel(int levelIndex) {
+    public void LoadLevel(int levelIndex) {
+        StartCoroutine(LoadLevelCoroutine(levelIndex));
+    }
+
+    private IEnumerator LoadLevelCoroutine(int levelIndex) {
         crossfade.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);

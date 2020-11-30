@@ -34,7 +34,7 @@ public class Pickup : MonoBehaviour {
                     Instantiate(itemButton, inventory.slots[i].transform, false);
 
                     if (ID == Items.Scrap)
-                        inventory.scrapAmount++;
+                        Inventory.scrapAmount++;
 
                     Destroy(gameObject);
                     break;

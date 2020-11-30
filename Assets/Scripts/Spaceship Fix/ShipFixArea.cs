@@ -53,14 +53,14 @@ public class ShipFixArea : MonoBehaviour {
     }
 
     void CheckIfEnough() {
-        if (inventory.scrapAmount >= TextUpdate.maxAmount) {
+        if (Inventory.scrapAmount >= TextUpdate.maxAmount) {
             shipFixed = true;
 
             // Removing items from inventory
             for (int i = 0; i < TextUpdate.maxAmount; i++) {
                 if (inventory.slots[i].transform.GetChild(0).gameObject.GetComponent<Drop>().ID == Items.Scrap) {
                     Destroy(inventory.slots[i].transform.GetChild(0).gameObject);
-                    inventory.scrapAmount--;
+                    Inventory.scrapAmount--;
                 }
             }
             // TODO - Call some function to fix the spaceship

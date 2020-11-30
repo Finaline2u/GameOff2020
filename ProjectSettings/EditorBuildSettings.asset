@@ -16,7 +16,10 @@ EditorBuildSettings:
     guid: adb08d5ec098f8e4db28da3e8726e4ca
   - enabled: 1
     path: Assets/Scenes/Bunker Cutscene.unity
-    guid: 28b6c3b592656844193ce66065338ac8
+    guid: b1e4abcf469abdb409cf4f1bb8ebbba1
+  - enabled: 1
+    path: Assets/Scenes/Bunker.unity
+    guid: 56f2c9e62282d254a95df5dc209ab6a8
   - enabled: 1
     path: Assets/Scenes/City.unity
     guid: 73017b344df063b419a8925c47614293

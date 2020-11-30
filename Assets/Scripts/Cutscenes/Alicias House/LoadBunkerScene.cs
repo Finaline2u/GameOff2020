@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LoadBunkerScene : MonoBehaviour {
 
+    public int sceneIndex;
+
     public void LoadBunker() {
-        StartCoroutine(LevelLoader.instance.LoadLevel(3));
+        LevelLoader.instance.LoadLevel(sceneIndex);
     }
 
 }

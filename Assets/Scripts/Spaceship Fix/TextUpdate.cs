@@ -18,7 +18,7 @@ public class TextUpdate : MonoBehaviour {
     }
 
     void Update() {
-        currentAmount = inventory.scrapAmount;
+        currentAmount = Inventory.scrapAmount;
         textMesh.text = String.Format("{0}/{1}", currentAmount.ToString(), maxAmount.ToString());
     }
 
