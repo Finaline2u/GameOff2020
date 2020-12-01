@@ -25,6 +25,8 @@ public class FieldOfView : MonoBehaviour {
 
     private float startingAngle = 50f;
 
+    public Animator redScreen = default;
+
     void Start() {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -77,7 +79,7 @@ public class FieldOfView : MonoBehaviour {
             } else {
                 // If the raycast hits the player
                 if (raycastHit2D.collider.CompareTag("FovID")) {
-                    SomeFunction();
+                    GameOver();
                     vertex = origin + GetVectorFromAngle(angle) * viewDistance;
                 } 
                 else {
@@ -125,8 +127,15 @@ public class FieldOfView : MonoBehaviour {
         return n;
     }
 
-    void SomeFunction() {
-        Debug.Log("Game over");
+    void GameOver() {
+        redScreen.SetTrigger("GameOver");
+
+        Invoke("RestartLevel", 1.85f);
+        
+    }
+
+    void RestartLevel() {
+        LevelLoader.instance.LoadLevel(6);
     }
 
     // void OnDrawGizmos() {

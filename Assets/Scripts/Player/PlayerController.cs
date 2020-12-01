@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour {
         anim = GetComponent<Animator>();
 
         // Turning player to correct direction on enter another scenes
-        if (playerOrientation != null)
-            anim.Play(playerOrientation);
+        // if (playerOrientation != null)
+        //     anim.Play(playerOrientation);
     }
 
     void FixedUpdate() {

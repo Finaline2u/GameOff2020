@@ -9,7 +9,7 @@ public class TextUpdate : MonoBehaviour {
     private Text textMesh;
     private Inventory inventory;
 
-    public static int maxAmount = 0;
+    public static int maxAmount = 5;
     private int currentAmount = default;
 
     void Start() {

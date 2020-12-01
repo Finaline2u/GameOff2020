@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LoadScenes : MonoBehaviour {
 
-    public int sceneIndexToLoad;
+    public int sceneIndexToLoad = default;
+
+    public static bool exitedFromBunker = false;
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.CompareTag("Player")) {
@@ -13,6 +15,7 @@ public class LoadScenes : MonoBehaviour {
             // Bunker
             if (SceneManager.GetActiveScene().buildIndex == 4) {
                 TPCorrectPlace.noMoreCutscene = true;
+                exitedFromBunker = true;
             }
             
             LevelLoader.instance.LoadLevel(sceneIndexToLoad);
