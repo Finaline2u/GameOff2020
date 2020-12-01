@@ -32,7 +32,6 @@ public class ShipFixArea : MonoBehaviour {
             insideArea = true;
         }
         else {
-            Debug.Log("Entrou");
             insideArea = false;
         }
     }
