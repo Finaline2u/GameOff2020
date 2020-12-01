@@ -2,8 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShipFixArea : MonoBehaviour {
+
+    public UnityEvent AfterFixEvent;
 
     public float fixRange = 0.5f;
     private bool shipFixed = false;
@@ -12,12 +15,11 @@ public class ShipFixArea : MonoBehaviour {
     
     public LayerMask playerLayerMask = default;
     public GameObject fixHud = default;
-    private GameObject pressButton = default;
+    public GameObject pressButton = default;
     private Inventory inventory = default;
 
     void Start() {
         inventory = FindObjectOfType<Inventory>();
-        pressButton = GameObject.Find("Canvas").transform.Find("Press Button").gameObject;
     }
 
     void Update() {
@@ -26,10 +28,13 @@ public class ShipFixArea : MonoBehaviour {
         // Checking if any object with "Player" layer is inside the fix area
         Collider2D collider = Physics2D.OverlapCircle(transform.position, fixRange, playerLayerMask);
 
-        if (collider != null)
+        if (collider != null) {
             insideArea = true;
-        else
+        }
+        else {
+            Debug.Log("Entrou");
             insideArea = false;
+        }
     }
 
     void HandleSpaceshipFixHud() {
@@ -63,7 +68,9 @@ public class ShipFixArea : MonoBehaviour {
                     Inventory.scrapAmount--;
                 }
             }
+
             // TODO - Call some function to fix the spaceship
+            AfterFixEvent?.Invoke();
         } else
             return;
     }

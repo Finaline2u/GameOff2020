@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4780684161248197304}
   - component: {fileID: 4780684161248197253}
   - component: {fileID: 1947608969076114680}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terry
   m_TagString: Player
   m_Icon: {fileID: 0}

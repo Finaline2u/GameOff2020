@@ -14,6 +14,7 @@ public class Bagpack : MonoBehaviour {
 
     public void OpenBagpack() {
         if (!inventory.activeSelf) {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx_gameplay/item_mochila (normal)", gameObject.transform.position);
             inventory.SetActive(true);
         } else {
             inventoryAnim.SetTrigger("Close");

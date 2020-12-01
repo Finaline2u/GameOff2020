@@ -13,7 +13,7 @@ public class ObjectSoundManager : MonoBehaviour
         }
 
         // City and Bunker
-        if (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 4 || SceneManager.GetActiveScene().buildIndex == 5) {
+        if (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 4 || SceneManager.GetActiveScene().buildIndex == 5 || SceneManager.GetActiveScene().buildIndex == 6) {
             FMODUnity.RuntimeManager.PlayOneShot("event:/sfx_gameplay/passos_concreto (multi, probality)", gameObject.transform.position);
         }
     }

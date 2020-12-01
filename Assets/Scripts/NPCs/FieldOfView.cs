@@ -6,7 +6,6 @@ public class FieldOfView : MonoBehaviour {
 
     [SerializeField] private LayerMask layerMask = default;
     [SerializeField] private GameObject guardObject = default;
-    [SerializeField] private Material redMaterial = default;
 
     private Animator guardAnim;
     private Rigidbody2D guardRig;
@@ -127,7 +126,6 @@ public class FieldOfView : MonoBehaviour {
     }
 
     void SomeFunction() {
-        GetComponent<MeshRenderer>().material = redMaterial;
         Debug.Log("Game over");
     }
 

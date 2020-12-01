@@ -23,6 +23,7 @@ public class Pickup : MonoBehaviour {
     void Update() {
         if (nearToItem && Input.GetKeyDown(USE_BUTTON))
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx_gameplay/item_pegar (normal)", gameObject.transform.position);
             for (int i = 0; i < inventory.slots.Count; i++) 
             {
                 if (inventory.isFull[i] == false) 

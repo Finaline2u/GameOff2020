@@ -31,7 +31,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f0f6b93cd494d4b44afaa36735e0719f, type: 3}
-    totalSpriteSurfaceArea: 14726912
+    totalSpriteSurfaceArea: 14776945
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -67,6 +67,19 @@ SpriteAtlas:
   - {fileID: -6288179971597629913, guid: cb0a487b8f80e1c4d892b9b8652b2469, type: 3}
   - {fileID: 21300000, guid: 138d7e7bfc9a6bd4f8d972900c0d6a86, type: 3}
   - {fileID: 21300000, guid: 86748a9b60af361499f07226dbd57aab, type: 3}
+  - {fileID: 6970617040960531819, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: 7604477119001827004, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: -950597567863611924, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: -6071081117923969022, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: 3498843976217313178, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: -4413906365385514264, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: 6427227559852750413, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: -6959741356017149658, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: 9071368417698104532, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: -3246256459176722309, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: 2757484118162231845, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: 5090772447138320906, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
+  - {fileID: 3308591299402537446, guid: 1a5f7d9bf3dc00f40ac1960d8a743371, type: 3}
   - {fileID: -5599825765821632105, guid: f31a90abcd0641a45a2179b6cb9d4f4d, type: 3}
   - {fileID: 21300000, guid: 1b23eccb9c41dd84ba9700d267e7e0df, type: 3}
   - {fileID: 21300000, guid: 5725f9dbaaad1504d9392e1cfca0fba3, type: 3}
@@ -76,6 +89,23 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c6f719fcc22307940a3859a078658d17, type: 3}
   - {fileID: 4892697038586486152, guid: 3f95ccfcae00ed449b76d438ea1794c8, type: 3}
   - {fileID: 21300000, guid: 4e9b783dfbd953d4f8943e69365d5ff2, type: 3}
+  - {fileID: 5225576452912928853, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -6513935784000473110, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -5989564498057000814, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -319421269348655175, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -2651466027045478579, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: 2556336656138165542, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -6412730335851356068, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: 5722560631891799820, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -9184820050610050909, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: 8822367652225748252, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: 4226240654244032299, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: 5597361551711781969, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -3437295639575445086, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -3811955204992614855, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -5509777347881185231, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: -1417949856342478517, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
+  - {fileID: 6498338999106593242, guid: 756a837d400df7048987c0d0e71fa34b, type: 3}
   - {fileID: 21300000, guid: 7047121e452036e47849a6e18875a43f, type: 3}
   - {fileID: 21300000, guid: aa647e1e3ae5b2549b992a52538acfe9, type: 3}
   - {fileID: 21300000, guid: a992500f226887942b83fb07c1331b06, type: 3}
@@ -114,6 +144,19 @@ SpriteAtlas:
   - Sofa_0
   - predios2
   - 1
+  - BunkerObjects2_12
+  - BunkerObjects2_10
+  - BunkerObjects2_11
+  - BunkerObjects2_9
+  - BunkerObjects2_8
+  - BunkerObjects2_7
+  - BunkerObjects2_6
+  - BunkerObjects2_5
+  - BunkerObjects2_4
+  - BunkerObjects2_3
+  - BunkerObjects2_2
+  - BunkerObjects2_1
+  - BunkerObjects2_0
   - Fogao_0
   - 2
   - Entulho
@@ -123,6 +166,23 @@ SpriteAtlas:
   - AliciasHousesShaders2
   - Lixo Metal_0
   - b4
+  - BunkerObjects1_12
+  - BunkerObjects1_11
+  - BunkerObjects1_10
+  - BunkerObjects1_16
+  - BunkerObjects1_15
+  - BunkerObjects1_14
+  - BunkerObjects1_8
+  - BunkerObjects1_9
+  - BunkerObjects1_0
+  - BunkerObjects1_1
+  - BunkerObjects1_2
+  - BunkerObjects1_3
+  - BunkerObjects1_4
+  - BunkerObjects1_5
+  - BunkerObjects1_6
+  - BunkerObjects1_7
+  - BunkerObjects1_13
   - predios
   - Square
   - Alicias House Luz

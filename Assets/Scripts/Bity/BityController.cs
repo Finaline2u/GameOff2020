@@ -55,14 +55,19 @@ public class BityController : MonoBehaviour {
             if (!shortFlashlightOn && !longFlashlightOn) 
             {
                 circleLight.SetActive(true);
+
+                FMODUnity.RuntimeManager.PlayOneShot("event:/sfx_gameplay/bity_lanterna_foco fechado (pitch)", gameObject.transform.position);
                 shortFlashlight.SetActive(true);
+                
                 shortFlashlightOn = true;
             }
             else if (shortFlashlightOn) {
                 shortFlashlight.SetActive(false);
                 shortFlashlightOn = false;
 
+                FMODUnity.RuntimeManager.PlayOneShot("event:/sfx_gameplay/bity_lanterna_foco aberto (pitch)", gameObject.transform.position);
                 longFlashlight.SetActive(true);
+                
                 longFlashlightOn = true;
             }
             else 
